@@ -685,6 +685,42 @@ public:
 	inline TypeSecure() {}
 };
 
+class __LOCAL TypeReleaseLater __FINAL : public TypeRelease
+{
+private:
+    Mutex lock;
+    TypeRef::Counted *list;
+
+    void release(TypeRef::Counted *obj) __FINAL;
+
+public:
+    TypeReleaseLater() { 
+        list = nullptr; 
+    }
+
+    void purge(void) __FINAL;
+};
+
+void TypeReleaseLater::release(TypeRef::Counted *obj)
+{
+    lock.acquire();
+    enlist(&list, obj);
+    lock.release();
+}
+
+void TypeReleaseLater::purge()
+{
+    TypeRef::Counted *pool;
+    lock.acquire();
+    pool = list;
+    list = nullptr;
+    lock.release();
+
+    while(TypeRef::Counted *obj = delist(&pool)) {
+        TypeRelease::release(obj);
+    }
+}
+
 void TypeSecure::release(TypeRef::Counted *obj)
 {
     char *addr = (char *)obj + sizeof(TypeRef::Counted);
@@ -694,8 +730,10 @@ void TypeSecure::release(TypeRef::Counted *obj)
 }
 
 static TypeSecure _secure_release;
+static TypeReleaseLater _release_later;
 
 TypeRelease auto_release;
 TypeRelease secure_release(&_secure_release);
+TypeRelease release_later(&_release_later);
 
 } // namespace

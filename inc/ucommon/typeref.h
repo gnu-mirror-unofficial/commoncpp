@@ -288,6 +288,7 @@ protected:
 
 extern __EXPORT TypeRelease auto_release;
 extern __EXPORT TypeRelease secure_release;
+extern __EXPORT TypeRelease release_later;
 
 template<typename T, TypeRelease& R = auto_release>
 class typeref : public TypeRef
