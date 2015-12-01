@@ -264,7 +264,7 @@ public:
 		delegate = target;
 	}
 
-	virtual void purge();
+	virtual unsigned purge();
 
 	virtual caddr_t allocate(size_t size);
 

@@ -265,5 +265,10 @@ extern "C" int main()
 
     stringref<secure_release> s4 = "abc";
 
+    stringref<release_later> s6 = "abc";
+    stringref<release_later> s7 = "123";
+    s6 = "";
+    s7 = "";
+    assert(release_later.purge() == 2);
     return 0;
 }

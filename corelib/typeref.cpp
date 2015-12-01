@@ -644,10 +644,11 @@ void TypeRelease::release(TypeRef::Counted *obj)
     obj->dealloc();
 }
 
-void TypeRelease::purge()
+unsigned TypeRelease::purge()
 {
     if(delegate)
-        delegate->purge();
+        return delegate->purge();
+    return 0;
 }
 
 void TypeRelease::enlist(TypeRef::Counted **root, TypeRef::Counted *obj)
@@ -698,7 +699,7 @@ public:
         list = nullptr; 
     }
 
-    void purge(void) __FINAL;
+    unsigned purge(void) __FINAL;
 };
 
 void TypeReleaseLater::release(TypeRef::Counted *obj)
@@ -708,17 +709,21 @@ void TypeReleaseLater::release(TypeRef::Counted *obj)
     lock.release();
 }
 
-void TypeReleaseLater::purge()
+unsigned TypeReleaseLater::purge()
 {
+    TypeRef::Counted *obj;
+    unsigned count = 0;
     TypeRef::Counted *pool;
     lock.acquire();
     pool = list;
     list = nullptr;
     lock.release();
 
-    while(TypeRef::Counted *obj = delist(&pool)) {
+    while((obj = delist(&pool)) != nullptr) {
         TypeRelease::release(obj);
+        ++count;
     }
+    return count;
 }
 
 void TypeSecure::release(TypeRef::Counted *obj)
