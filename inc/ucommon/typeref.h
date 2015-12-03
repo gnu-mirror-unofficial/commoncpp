@@ -250,7 +250,7 @@ public:
 		target.set(object);
 	}
 
-	TypeRelease *autorelease(TypeRelease *to);
+	bool is_released(void);
 };
 
 class __EXPORT TypeRelease

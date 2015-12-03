@@ -93,14 +93,15 @@ void TypeRef::clear(void)
     ref = NULL;
 }
 
-TypeRelease *TypeRef::autorelease(TypeRelease *rel)
+bool TypeRef::is_released()
 {
     if(!ref)
-        return nullptr;
+        return false;
 
-    TypeRelease *tmp = ref->autorelease;
-    ref->autorelease = rel;
-    return tmp;
+    if(ref->autorelease)
+        return true;
+
+    return false;
 }
 
 void TypeRef::set(const TypeRef& ptr)
