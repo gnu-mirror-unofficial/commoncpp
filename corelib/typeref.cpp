@@ -96,12 +96,12 @@ void TypeRef::clear(void)
 bool TypeRef::is_released()
 {
     if(!ref)
-        return false;
-
-    if(ref->autorelease)
         return true;
 
-    return false;
+    if(ref->autorelease)
+        return false;
+
+    return true;
 }
 
 void TypeRef::set(const TypeRef& ptr)
