@@ -32,7 +32,7 @@ macro(add_make_dist_target _TARGET _VERSION)
             DEPENDS cleandist
             WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
             COMMAND git archive --format tar.gz --output="${CMAKE_CURRENT_BINARY_DIR}/${_TARGET}-${_VERSION}.tar.gz" --prefix="${_TARGET}-${_VERSION}/" HEAD
-            COMMAND git archive --format zip --output="${CMAKE_CURRENT_BINARY_DIR}/${_TARGET}-${_VERSION}.zip" --prefix="${_TATGET}-${_VERSION}/" HEAD
+            COMMAND git archive --format zip --output="${CMAKE_CURRENT_BINARY_DIR}/${_TARGET}-${_VERSION}.zip" --prefix="${_TARGET}-${_VERSION}/" HEAD
         )
     endif()
 endmacro(add_make_dist_target)
