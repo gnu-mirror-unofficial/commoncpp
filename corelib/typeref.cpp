@@ -112,6 +112,16 @@ void TypeRef::set(const TypeRef& ptr)
     ref = ptr.ref;
 }
 
+void TypeRef::assign(const global_typeref& global)
+{
+    global.sync.acquire();
+    if(global.ref)
+        global.ref->retain();
+    clear();
+    ref = global.ref;
+    global.sync.release();
+}
+
 void TypeRef::set(TypeRef::Counted *object)
 {
     if(object)
@@ -126,6 +136,13 @@ caddr_t TypeRef::mem(caddr_t addr)
     while(((uintptr_t)addr) & mask)
         ++addr;
     return addr;
+}
+
+void global_typeref::set(const TypeRef& pointer)
+{
+    sync.lock();
+    TypeRef::set(pointer);
+    sync.unlock();
 }
 
 typeref<const char *>::value::value(caddr_t addr, size_t objsize, const char *str, TypeRelease *ar) : 

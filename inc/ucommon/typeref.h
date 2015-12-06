@@ -48,9 +48,14 @@
 #include <ucommon/object.h>
 #endif
 
+#ifndef _UCOMMON_THREAD_H_
+#include <ucommon/thread.h>
+#endif
+
 namespace ucommon {
 
 class TypeRelease;
+class global_typeref;
 
 /**
  * Smart pointer base class for auto-retained objects.  The underlying
@@ -184,6 +189,11 @@ protected:
 	void set(Counted *object);
 
 	/**
+	 * Assign from a global typeref.
+	 */
+	void assign(const global_typeref& ref);
+
+	/**
 	 * Adjust memory pointer to atomic boundry.
 	 * @param address that was allocated.
 	 * @return address for actual atomic aligned object.
@@ -290,6 +300,28 @@ extern __EXPORT TypeRelease auto_release;
 extern __EXPORT TypeRelease secure_release;
 extern __EXPORT TypeRelease release_later;
 
+class __EXPORT global_typeref : protected TypeRef
+{
+private:
+	friend class TypeRef;
+	
+	mutable Mutex sync;
+
+public:
+	inline global_typeref() : TypeRef() {}
+
+	inline global_typeref(const global_typeref& copy) : TypeRef(copy) {}
+
+	inline global_typeref(const TypeRef& pointer) : TypeRef(pointer) {}
+
+	void set(const TypeRef& pointer);
+
+	inline global_typeref& operator=(const TypeRef& pointer) {
+		set(pointer);
+		return *this;
+	}
+};
+
 template<typename T, TypeRelease& R = auto_release>
 class typeref : public TypeRef
 {
@@ -345,6 +377,11 @@ public:
 		value *v = polystatic_cast<value*>(ref);
 		__THROW_DEREF(v);
 		return *(&(v->data));
+	}
+
+	inline typeref& operator=(const global_typeref& ptr) {
+		TypeRef::assign(ptr);
+		return *this;
 	}
 
 	inline typeref& operator=(const typeref& ptr) {
