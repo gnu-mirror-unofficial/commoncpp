@@ -343,6 +343,10 @@ private:
 public:
 	inline typeref() :	TypeRef() {}
 
+	inline typeref(const global_typeref& global) : TypeRef() {
+		TypeRef::assign(global);
+	}
+
 	inline typeref(const typeref& copy) : TypeRef(copy) {}
 
 	inline typeref(const T& object, TypeRelease *ar = &R) : TypeRef() {
@@ -473,6 +477,10 @@ public:
 
 	typeref(size_t size, TypeRelease *ar = &auto_release);
 
+	inline typeref(const global_typeref& global) : TypeRef() {
+		TypeRef::assign(global);
+	}
+
 	inline explicit typeref(Counted *object) : TypeRef(object) {}
 
 	inline explicit typeref(value *value) : TypeRef(value) {}
@@ -585,6 +593,10 @@ public:
 	typeref(size_t size, TypeRelease *ar = &auto_release);
 
 	typeref(bool mode, size_t bits, TypeRelease *ar = &auto_release);
+
+	inline typeref(const global_typeref& global) : TypeRef() {
+		TypeRef::assign(global);
+	}
 
 	inline explicit typeref(Counted *object) : TypeRef(object) {}
 
