@@ -55,7 +55,7 @@
 namespace ucommon {
 
 class TypeRelease;
-class global_typeref;
+class guarded_typeref;
 
 /**
  * Smart pointer base class for auto-retained objects.  The underlying
@@ -189,9 +189,9 @@ protected:
 	void set(Counted *object);
 
 	/**
-	 * Assign from a global typeref.
+	 * Assign from a guarded typeref.
 	 */
-	void assign(const global_typeref& ref);
+	void assign(const guarded_typeref& ref);
 
 	/**
 	 * Adjust memory pointer to atomic boundry.
@@ -300,7 +300,7 @@ extern __EXPORT TypeRelease auto_release;
 extern __EXPORT TypeRelease secure_release;
 extern __EXPORT TypeRelease release_later;
 
-class __EXPORT global_typeref : protected TypeRef
+class __EXPORT guarded_typeref : protected TypeRef
 {
 private:
 	friend class TypeRef;
@@ -308,15 +308,15 @@ private:
 	mutable Mutex sync;
 
 public:
-	inline global_typeref() : TypeRef() {}
+	inline guarded_typeref() : TypeRef() {}
 
-	inline global_typeref(const global_typeref& copy) : TypeRef(copy) {}
+	inline guarded_typeref(const guarded_typeref& copy) : TypeRef(copy) {}
 
-	inline global_typeref(const TypeRef& pointer) : TypeRef(pointer) {}
+	inline guarded_typeref(const TypeRef& pointer) : TypeRef(pointer) {}
 
 	void set(const TypeRef& pointer);
 
-	inline global_typeref& operator=(const TypeRef& pointer) {
+	inline guarded_typeref& operator=(const TypeRef& pointer) {
 		set(pointer);
 		return *this;
 	}
@@ -343,7 +343,7 @@ private:
 public:
 	inline typeref() :	TypeRef() {}
 
-	inline typeref(const global_typeref& global) : TypeRef() {
+	inline typeref(const guarded_typeref& global) : TypeRef() {
 		TypeRef::assign(global);
 	}
 
@@ -383,7 +383,7 @@ public:
 		return *(&(v->data));
 	}
 
-	inline typeref& operator=(const global_typeref& ptr) {
+	inline typeref& operator=(const guarded_typeref& ptr) {
 		TypeRef::assign(ptr);
 		return *this;
 	}
@@ -477,7 +477,7 @@ public:
 
 	typeref(size_t size, TypeRelease *ar = &auto_release);
 
-	inline typeref(const global_typeref& global) : TypeRef() {
+	inline typeref(const guarded_typeref& global) : TypeRef() {
 		TypeRef::assign(global);
 	}
 
@@ -594,7 +594,7 @@ public:
 
 	typeref(bool mode, size_t bits, TypeRelease *ar = &auto_release);
 
-	inline typeref(const global_typeref& global) : TypeRef() {
+	inline typeref(const guarded_typeref& global) : TypeRef() {
 		TypeRef::assign(global);
 	}
 

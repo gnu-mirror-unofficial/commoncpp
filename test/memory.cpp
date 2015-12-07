@@ -89,7 +89,7 @@ extern "C" int main()
     assert((int)iptr == 3);
     assert(iptr.copies() == 2);
 
-    static global_typeref gptr;
+    static guarded_typeref gptr;
     typeref<int> lptr;
     lptr = (int)3;
     gptr = lptr;
