@@ -112,7 +112,7 @@ void TypeRef::set(const TypeRef& ptr)
     ref = ptr.ref;
 }
 
-void TypeRef::assign(const guarded_typeref& global)
+void TypeRef::assign(const typeref_guard& global)
 {
     global.sync.acquire();
     if(global.ref)
@@ -138,7 +138,7 @@ caddr_t TypeRef::mem(caddr_t addr)
     return addr;
 }
 
-void guarded_typeref::set(const TypeRef& pointer)
+void typeref_guard::set(const TypeRef& pointer)
 {
     sync.lock();
     TypeRef::set(pointer);
