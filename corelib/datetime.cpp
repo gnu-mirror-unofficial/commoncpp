@@ -1,6 +1,6 @@
 // Copyright (C) 1999-2005 Open Source Telecom Corporation.
 // Copyright (C) 2006-2014 David Sugar, Tycho Softworks.
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -311,7 +311,7 @@ long Date::get(void) const
     return atol(buf) * 10000 + atol(buf + 5) * 100 + atol(buf + 8);
 }
 
-Date& Date::operator++() 
+Date& Date::operator++()
 {
     ++julian;
     update();

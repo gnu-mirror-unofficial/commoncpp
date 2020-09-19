@@ -1,5 +1,5 @@
 // Copyright (C) 2006-2014 David Sugar, Tycho Softworks.
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -410,7 +410,7 @@ inline T& move(T& src, T& to) {
     memcpy((void *)&to, (void *)&src, sizeof(T));
     new((caddr_t)&src) T();
     return to;
-} 
+}
 
 template<typename T>
 inline T& clear(T& o) {

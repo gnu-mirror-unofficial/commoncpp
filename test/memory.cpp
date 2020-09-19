@@ -1,5 +1,5 @@
 // Copyright (C) 2006-2014 David Sugar, Tycho Softworks.
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -34,7 +34,7 @@ class special
 {
 public:
     int x;
-    
+
     special() {
         x = ++cval;
     }
@@ -155,7 +155,7 @@ extern "C" int main()
     sharedref<int> sint;
     sint = 3;
     typeref<int> sv = sint;
-    assert(sv.copies() == 2); 
+    assert(sv.copies() == 2);
 
     stackref<int> stackofints(20);
     stackofints << 17;
@@ -246,7 +246,7 @@ extern "C" int main()
     assert(a == 2);
     copy(b, a);
     assert(a == 1);
-    b = 2; 
+    b = 2;
     move(b, a);
     assert(a == 2);
     assert(b == 0);

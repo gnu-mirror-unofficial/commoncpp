@@ -1,3 +1,8 @@
+Changes from 7.0.0 to 7.0.1
+- small cmake fix
+- stdalign.h not used
+- lots of code cleanup for modern distros and compilers
+
 Changes from 6.6.0 to 7.0.0
 - clean new library abi 8.0
 - atomic typeref system completed, matches tychomt spec
@@ -33,7 +38,7 @@ Changes from 6.5.5 to 6.5.6
 
 Changes from 6.5.4 to 6.5.5
 - more portable nullptr support
-- thread-safe mapref class 
+- thread-safe mapref class
 - some typeref convenience types
 - bit operations on byterefs
 
@@ -276,7 +281,7 @@ from ucommon 5.4.3 to 5.5.0
 - mapof and listof added
 - semaphore default for commoncpp set to 0
 - simplify config, no longer separate stdlib and compat
-- resolved issues with XOPEN_SOURCE and broken BSD headers 
+- resolved issues with XOPEN_SOURCE and broken BSD headers
 - many mingw 32 and 64 bit fixes, build fixes for out of source binary builds
 
 from ucommon 5.4.2 to 5.4.3

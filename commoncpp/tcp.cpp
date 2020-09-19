@@ -1,6 +1,6 @@
 // Copyright (C) 1999-2005 Open Source Telecom Corporation.
 // Copyright (C) 2006-2014 David Sugar, Tycho Softworks.
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -481,12 +481,7 @@ TCPStream::TCPStream(const IPV6Host &host, in_port_t port, unsigned size, bool t
 
 TCPStream::~TCPStream()
 {
-#ifdef  CCXX_EXCEPTIONS
-        try { endStream(); }
-        catch( ... ) { if ( ! std::uncaught_exception()) throw;};
-#else
-        endStream();
-#endif
+    endStream();
 }
 
 #ifdef  HAVE_GETADDRINFO

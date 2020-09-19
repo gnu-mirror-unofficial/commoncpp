@@ -1,4 +1,4 @@
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -81,7 +81,7 @@ MappedPointer::MappedPointer(size_t indexes, condlock_t *locking, size_t paging)
 MappedPointer::~MappedPointer()
 {
 	pager.purge();
-}	
+}
 
 LinkedObject *MappedPointer::access(size_t path)
 {
@@ -121,14 +121,14 @@ void MappedPointer::insert(const void *key, void *value, size_t path)
 	caddr_t p = (caddr_t)(free);
 	if(free)
 		free = free->getNext();
-	else 
+	else
 		p = (caddr_t)pager.alloc(sizeof(Index));
 
 	Index *ind = new(p) Index(&list[path % paths]);
 	ind->key = key;
 	ind->value = value;
 	lock->commit();
-}	
+}
 
 size_t MappedPointer::keypath(const uint8_t *addr, size_t size)
 {

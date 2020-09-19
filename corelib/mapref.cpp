@@ -1,4 +1,4 @@
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -45,7 +45,7 @@ Counted(addr, indexes), pool(paging)
     LinkedObject **list = get();
     free = last = NULL;
     count = alloc = 0;
-    
+
     while(index < indexes) {
         list[index++] = NULL;
     }
@@ -86,7 +86,7 @@ MapRef::Index *MapRef::Map::append()
     last = ip;
     ip->Next = NULL;
     return ip;
-}       
+}
 
 void MapRef::Map::remove(Index *index, size_t path)
 {
@@ -113,7 +113,7 @@ void MapRef::Map::remove(Index *index, size_t path)
             }
         }
     }
-    index->delist(root); 
+    index->delist(root);
     index->enlist(&free);
 }
 
@@ -148,7 +148,7 @@ void MapRef::Map::dealloc()
 			ip.next();
 		}
 		++index;
-	}	
+	}
     size = 0;
 	free = last = NULL;
 	pool.purge();

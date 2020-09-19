@@ -1,5 +1,5 @@
 // Copyright (C) 2010-2014 David Sugar, Tycho Softworks.
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -68,7 +68,7 @@ protected:
 
 public:
     virtual ~AutoClear();
-};    
+};
 
 template<typename T>
 class autoclear : public AutoClear
@@ -125,7 +125,7 @@ public:
  * secure/ssl socket support code.
  * @author David Sugar <dyfet@gnutelephony.org>
  */
-class __SHARED secure 
+class __SHARED secure
 {
 public:
     /**
@@ -385,7 +385,7 @@ public:
         }
 
         inline Key& operator=(const char *pass) {
-            assign(pass); 
+            assign(pass);
             return *this;
         }
 
@@ -539,26 +539,26 @@ public:
     }
 
     inline Digest &operator<<(const char *str) {
-        puts(str); 
+        puts(str);
         return *this;
     }
 
     inline Digest &operator<<(int16_t value) {
-        int16_t v = htons(value); 
-        put(&v, 2); 
+        int16_t v = htons(value);
+        put(&v, 2);
         return *this;
     }
 
     inline Digest &operator<<(int32_t value) {
-        int32_t v = htonl(value); 
-        put(&v, 4); 
+        int32_t v = htonl(value);
+        put(&v, 4);
         return *this;
     }
 
     inline Digest &operator<<(const PrintProtocol& p) {
-        const char *cp = p._print(); 
-        if(cp) 
-            puts(cp); 
+        const char *cp = p._print();
+        if(cp)
+            puts(cp);
         return *this;
     }
 
@@ -648,8 +648,8 @@ public:
 };
 
 /**
- * A cryptographic message authentication code class.  This class can support 
- * md5 digests, sha1, sha256, etc, depending on what the underlying library 
+ * A cryptographic message authentication code class.  This class can support
+ * md5 digests, sha1, sha256, etc, depending on what the underlying library
  * supports.
  * @author David Sugar <dyfet@gnutelephony.org>
  */
@@ -686,26 +686,26 @@ public:
     }
 
     inline HMAC &operator<<(const char *str) {
-        puts(str); 
+        puts(str);
         return *this;
     }
 
     inline HMAC &operator<<(int16_t value) {
-        int16_t v = htons(value); 
-        put(&v, 2); 
+        int16_t v = htons(value);
+        put(&v, 2);
         return *this;
     }
 
     inline HMAC &operator<<(int32_t value) {
-        int32_t v = htonl(value); 
-        put(&v, 4); 
+        int32_t v = htonl(value);
+        put(&v, 4);
         return *this;
     }
 
     inline HMAC &operator<<(const PrintProtocol& p) {
-        const char *cp = p._print(); 
-        if(cp) 
-            puts(cp); 
+        const char *cp = p._print();
+        if(cp)
+            puts(cp);
         return *this;
     }
 
@@ -868,7 +868,7 @@ public:
     inline static T value(T min, T max)
     {
         return min + Random::value<T>(max - min);
-    }    
+    }
 };
 
 
@@ -901,7 +901,7 @@ inline void zerofill(void *addr, size_t size)
 
 /**
  * Secure socket using std::iostream.  Being based on tcpstream, it also
- * inherits the character protocol.  If no context is given or the handshake 
+ * inherits the character protocol.  If no context is given or the handshake
  * fails, then the stream defaults to insecure TCP connection behavior.
  * @author David Sugar <dyfet@gnutelephony.org>
  */
@@ -939,7 +939,7 @@ public:
      * @param size of streaming buffer.
      */
     sstream(const TCPServer *server, secure::server_t context, size_t size = 536);
-    
+
     /**
      * Destroy ssl stream.  Clean up any resources used.
      */

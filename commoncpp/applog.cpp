@@ -1,4 +1,4 @@
-// Copyright (C) 2005-2015 Angelo Naselli, Penta Engineering s.r.l.
+// Copyright (C) 2005-2020 Angelo Naselli, Penta Engineering s.r.l.
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -127,7 +127,7 @@ class logger : public ost::ThreadQueue
     virtual void  onTimer(void);
     virtual void  final(void);
             void _openFile();
-  
+
   public:
     logger(const char* logFileName = NULL, bool usePipe = false);
     virtual ~logger();
@@ -294,7 +294,7 @@ logger::logger(const char* logFileName, bool usePipe)  : ThreadQueue(NULL, 0, 0)
 
   if (logFileName)
     _nomeFile = logFileName;
- 
+
   openFile();
 }
 
@@ -365,7 +365,7 @@ void logger::closeFile()
 {
    _closedByApplog = true;
 }
-    
+
 
 // writes into filename enqueued messages
 void logger::runQueue(void * data)
@@ -384,13 +384,13 @@ void logger::runQueue(void * data)
     slog.emerg("%s\n", e.what());
     std::cerr.flush();
   }
-  
+
   if (_logfs.is_open())
   {
     _logfs << str;
     _logfs.flush();
   }
-  
+
   //if we use a pipe to avoid increasing of stream buffer
   // without a consumer, we open, use and close it
   if ((_usePipe || _closedByApplog) && _logfs.is_open())

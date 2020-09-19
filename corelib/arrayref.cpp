@@ -1,4 +1,4 @@
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -86,18 +86,18 @@ TypeRef::Counted *ArrayRef::Array::remove(size_t index)
 {
     if(index >= size)
         return NULL;
-    
+
     Counted *result = get(index);
 
     (get())[index] = NULL;
     return result;
-}   
+}
 
 void ArrayRef::Array::assign(size_t index, Counted *object)
 {
     if(index >= size)
         return;
-    
+
     if(object)
         object->retain();
 
@@ -106,7 +106,7 @@ void ArrayRef::Array::assign(size_t index, Counted *object)
         replace->release();
 
     (get())[index] = object;
-}   
+}
 
 ArrayRef::ArrayRef() :
 TypeRef()
@@ -116,7 +116,7 @@ TypeRef()
 ArrayRef::ArrayRef(arraytype_t type, size_t size) :
 TypeRef(create(type, size))
 {
-} 
+}
 
 ArrayRef::ArrayRef(arraytype_t type, size_t size, TypeRef& object) :
 TypeRef(create(type, size))
@@ -174,7 +174,7 @@ void ArrayRef::pop(void)
 
     if(!array || !array->size)
         return;
-   
+
     array->lock();
     switch(array->type) {
     case STACK:
@@ -244,7 +244,7 @@ bool ArrayRef::push(const TypeRef& object, timeout_t timeout)
     array->broadcast();
     array->unlock();
     return true;
-} 
+}
 
 size_t ArrayRef::count()
 {
@@ -256,7 +256,7 @@ size_t ArrayRef::count()
         array->unlock();
     }
     return result;
-}   
+}
 
 void ArrayRef::push(const TypeRef& object)
 {
@@ -273,7 +273,7 @@ void ArrayRef::push(const TypeRef& object)
         array->tail = 0;
     array->broadcast();
     array->unlock();
-} 
+}
 
 void ArrayRef::pull(TypeRef& object, timeout_t timeout)
 {
@@ -306,13 +306,13 @@ void ArrayRef::pull(TypeRef& object, timeout_t timeout)
                 break;
             default:
                 break;
-            }  
+            }
             if(value) {
                 array->signal();
                 array->unlock();
                 object.ref = value;
                 return;
-            }        
+            }
         }
         if(!array->waitBroadcast(timeout)) {
             array->unlock();
@@ -353,13 +353,13 @@ void ArrayRef::pull(TypeRef& object)
                 break;
             default:
                 break;
-            }  
+            }
             if(value) {
                 array->signal();
                 array->unlock();
                 object.ref = value;
                 return;
-            }        
+            }
         }
         array->waitBroadcast();
     }

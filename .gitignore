@@ -44,7 +44,7 @@ config.h.in
 config.log
 config.status
 configure.lineno
-PKGBUILD
+CMakeDoxy*
 Doxyfile
 directive
 *.zip
@@ -70,6 +70,7 @@ directive
 *.tar.gz
 *.shar.gz
 *.cbp
+*.tmp
 .dirstamp
 test/ucommon[A-Z]*
 utils/args

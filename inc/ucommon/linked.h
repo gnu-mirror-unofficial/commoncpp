@@ -1,5 +1,5 @@
 // Copyright (C) 2006-2014 David Sugar, Tycho Softworks.
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -292,7 +292,7 @@ public:
      * @param object to copy from.
      */
     OrderedIndex& operator=(const OrderedIndex& object) {
-        copy(object); 
+        copy(object);
         return *this;
     }
 
@@ -941,7 +941,7 @@ public:
      * @param typed_value to assign.
      */
     inline linked_value(LinkedObject **root, const T& typed_value) {
-        LinkedObject::enlist(root); 
+        LinkedObject::enlist(root);
         value = typed_value;
     }
 
@@ -952,7 +952,7 @@ public:
      */
     inline linked_value(OrderedIndex *index, const T& typed_value) {
         O::enlist(index);
-        value = typed_value; 
+        value = typed_value;
     }
 
     inline void set(const T& typed_value) {

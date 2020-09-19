@@ -1,5 +1,5 @@
 // Copyright (C) 2006-2014 David Sugar, Tycho Softworks.
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -133,7 +133,7 @@ void keyfile::assign(keyfile& source)
     errcode = source.errcode;
     defaults = source.defaults;
     index.copy(source.index);
-    
+
     memalloc::assign(source);
     source.errcode = 0;
     source.defaults = NULL;

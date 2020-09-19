@@ -1,4 +1,4 @@
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -17,7 +17,7 @@
 
 /**
  * Arrays of thread-safe strongly typed heap objects.  This is used for
- * arrays of smart pointers to immutable heap instances of object types 
+ * arrays of smart pointers to immutable heap instances of object types
  * that are reference counted and automatically deleted when no longer used.
  * @file ucommon/arrayref.h
  */
@@ -105,11 +105,11 @@ protected:
 protected:
 	void push(const TypeRef& object);
 
-	void pull(TypeRef& object);	
+	void pull(TypeRef& object);
 
 	bool push(const TypeRef& object, timeout_t timeout);
 
-	void pull(TypeRef& object, timeout_t timeout);	
+	void pull(TypeRef& object, timeout_t timeout);
 
 public:
 	size_t count(void);

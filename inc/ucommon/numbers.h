@@ -1,5 +1,5 @@
 // Copyright (C) 2006-2014 David Sugar, Tycho Softworks.
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -214,7 +214,7 @@ typedef ZNumber znumber_t;
  * @return absolute value
  */
 template<typename T>
-inline const T abs(const T& value) 
+inline const T abs(const T& value)
 {
     if(value < (T)0)
         return -value;
@@ -229,7 +229,7 @@ inline const T abs(const T& value)
  * @return v1 if < v2, else v2
  */
 template<typename T>
-inline const T (min)(const T& v1, const T& v2) 
+inline const T (min)(const T& v1, const T& v2)
 {
     return ((v1 < v2) ? v1 : v2);
 }
@@ -241,7 +241,7 @@ inline const T (min)(const T& v1, const T& v2)
  * @return v1 if > v2, else v2
  */
 template<typename T>
-inline const T (max)(const T& v1, const T& v2) 
+inline const T (max)(const T& v1, const T& v2)
 {
     return ((v1 > v2) ? v1 : v2);
 }

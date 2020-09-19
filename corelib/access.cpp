@@ -1,5 +1,5 @@
 // Copyright (C) 2006-2014 David Sugar, Tycho Softworks.
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -54,7 +54,7 @@ SharedProtocol::Locking::Locking(const Locking& copy)
     lock = copy.lock;
     modify = false;
     state = 0;
-    if(lock)           
+    if(lock)
         lock->_share();
 }
 

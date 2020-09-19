@@ -1,5 +1,5 @@
 // Copyright (C) 2006-2014 David Sugar, Tycho Softworks.
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -561,12 +561,12 @@ public:
      * @param text to add to list.
      */
     inline StringPager& operator<<(const char *text) {
-        add(text); 
+        add(text);
         return *this;
     }
 
     inline StringPager& operator>>(const char *text) {
-        push(text); 
+        push(text);
         return *this;
     }
 
@@ -606,7 +606,7 @@ public:
     }
 
     inline StringPager& operator=(char **list) {
-        set(list); 
+        set(list);
         return *this;
     }
 

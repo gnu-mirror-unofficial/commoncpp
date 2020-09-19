@@ -1,5 +1,5 @@
 // Copyright (C) 2006-2014 David Sugar, Tycho Softworks.
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -864,7 +864,7 @@ std::streambuf(), std::istream(this)
     count = size;
 }
 
-int imemstream::underflow() 
+int imemstream::underflow()
 {
     if(!count || !pos)
         return EOF;
@@ -877,7 +877,7 @@ int imemstream::uflow()
         return EOF;
     --count;
     return GET(*(pos++));
-} 
+}
 
 bool getline(std::istream& in, char *buffer, size_t size)
 {

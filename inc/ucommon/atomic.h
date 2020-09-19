@@ -1,5 +1,5 @@
 // Copyright (C) 2006-2014 David Sugar, Tycho Softworks.
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -140,7 +140,7 @@ public:
         size_t offset;
 
         Aligned(size_t object, size_t offset = 0);
-    
+
     public:
         virtual ~Aligned();
     };
@@ -154,10 +154,10 @@ public:
         }
 
     public:
-        inline aligned() : Aligned(sizeof(T), alignment) { 
+        inline aligned() : Aligned(sizeof(T), alignment) {
             new((caddr_t)address) T;
         }
-        
+
         inline T& operator*() const {
             return *(static_cast<T*>(address));
         }

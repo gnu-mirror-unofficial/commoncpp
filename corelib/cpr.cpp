@@ -1,5 +1,5 @@
 // Copyright (C) 2006-2014 David Sugar, Tycho Softworks.
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -284,7 +284,7 @@ extern "C" {
         struct timeval now;
         time_t t1, t2 = 0;
         struct tm t;
-        
+
         gettimeofday(&now, tz);
         t1 = now.tv_sec;
 
@@ -297,7 +297,7 @@ extern "C" {
         t.tm_isdst = 0;
         t2 = mktime(&t);
         return (long)difftime(t1, t2);
-    } 
+    }
 }
 
 #endif

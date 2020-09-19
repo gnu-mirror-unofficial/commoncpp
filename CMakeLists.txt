@@ -1,5 +1,5 @@
 # Copyright (C) 2009-2014 David Sugar, Tycho Softworks
-# Copyright (C) 2015 Cherokees of Idaho.
+# Copyright (C) 2015-2020 Cherokees of Idaho.
 #
 # This file is free software; as a special exception the author gives
 # unlimited permission to copy and/or distribute it, with or without
@@ -19,11 +19,11 @@
 
 cmake_minimum_required(VERSION 2.6)
 PROJECT(ucommon)
-set (VERSION 7.0.0)
+set (VERSION 7.0.1)
+set (CMAKE_MACOSX_RPATH 1)
 
-if(BIICODE)
-    include(dyfet/ucommon/cmake/biicode)
-    return()
+if (POLICY CMP0075)
+    cmake_policy(SET CMP0075 OLD)
 endif()
 
 # when we override default install prefix, assume full path is used...
@@ -169,7 +169,6 @@ pc_libs(PKG_SECURE_LIBS ${SECURE_LIBS})
 create_specfile()
 create_headers(ucommon-config.h)
 create_scripts(scripts_cfg ucommon-config commoncpp-config)
-create_scripts(localscripts PKGBUILD)
 create_pcfiles(pc_files ucommon commoncpp)
 
 add_library(ucommon ${BUILD_RUNTIME_TYPE} ${common_src} ${ucommon_inc})
@@ -211,7 +210,7 @@ endif()
 install(TARGETS ucommon usecure DESTINATION ${CMAKE_INSTALL_LIBDIR})
 
 # cmake std targets not used; dist made on automake...
-#add_cape_make_targets(ucommon ${VERSION})
-add_make_lint_target()
+add_cape_make_targets(ucommon ${VERSION})
+#add_make_lint_target()
 add_cape_docs_target(Doxyfile)
-add_make_uninstall_target()
+#add_make_uninstall_target()

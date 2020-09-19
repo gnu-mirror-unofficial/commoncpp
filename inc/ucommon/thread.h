@@ -1,5 +1,5 @@
 // Copyright (C) 2006-2014 David Sugar, Tycho Softworks.
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -90,7 +90,7 @@ protected:
     pthread_t writeid;
 
     virtual void _share(void) __OVERRIDE;
-    
+
     virtual void _lock(void) __OVERRIDE;
 
     virtual void _unlock(void) __OVERRIDE;
@@ -598,7 +598,7 @@ public:
 
     inline bool operator!() const {
         return object == NULL;
-    }    
+    }
 };
 
 template<typename T>

@@ -1,6 +1,6 @@
 // Copyright (C) 1999-2005 Open Source Telecom Corporation.
 // Copyright (C) 2006-2014 David Sugar, Tycho Softworks.
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -676,7 +676,7 @@ protected:
      * Get the current state of the DetectPending flag.
      */
     inline bool getDetectPending( void ) const {
-        return detect_pending; 
+        return detect_pending;
     }
 
     /**
@@ -689,7 +689,7 @@ protected:
      * Get the current state of the DetectOutput flag.
      */
     inline bool getDetectOutput( void ) const {
-        return detect_output; 
+        return detect_output;
     }
 
     /**

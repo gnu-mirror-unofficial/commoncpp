@@ -1,6 +1,6 @@
 // Copyright (C) 1999-2005 Open Source Telecom Corporation.
 // Copyright (C) 2006-2014 David Sugar, Tycho Softworks.
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -165,7 +165,7 @@ void Slog::open(const char *ident, Class grp)
 #else
     if(syslog)
             fclose(syslog);
-    
+
     size_t size = strlen(ident) + 1;
     char *buf = new char[size];
     String::set(buf, size, ident);

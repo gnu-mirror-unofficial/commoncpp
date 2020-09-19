@@ -77,6 +77,5 @@ releases, offering greater clarity, consistency of use, and some new features
 that were migrated from Common C++.
 
 To better focus on standardizing secure and runtime services, uCommon was
-somewhat simplified in release 3.4.  ccscript is now part of GNU Bayonne,
-and ccaudio has been separated again.
-
+somewhat simplified in release 3.4.  Current work has been focused on better
+integration with C++11 standards.

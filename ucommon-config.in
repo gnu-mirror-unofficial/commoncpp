@@ -1,5 +1,6 @@
 #!/bin/sh
-# Copyright (C) 2006-2007 David Sugar, Tycho Softworks.
+# Copyright (C) 2006-2014 David Sugar, Tycho Softworks.
+# Copyright (C) 2015-2020 Cherokees of Idaho.
 #
 # This file is free software; as a special exception the author gives
 # unlimited permission to copy and/or distribute it, with or without
@@ -76,11 +77,11 @@ while test $# -gt 0; do
     ;;
 
   --libs)
-		echo -L@CMAKE_INSTALL_FULL_LIBDIR@ -lusecure -lucommon @PKG_SECURE_LIBS@ @PKG_UCOMMON_LIBS@ 
+		echo -L@CMAKE_INSTALL_FULL_LIBDIR@ -lusecure -lucommon @PKG_SECURE_LIBS@ @PKG_UCOMMON_LIBS@
     ;;
 
   --minimal)
-		echo -lucommon @PKG_UCOMMON_LIBS@ 
+		echo -lucommon @PKG_UCOMMON_LIBS@
     ;;
 
 	--includes)

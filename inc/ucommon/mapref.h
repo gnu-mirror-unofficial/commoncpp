@@ -1,4 +1,4 @@
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -18,7 +18,7 @@
 /**
  * Maps of thread-safe strongly typed heap objects.  This is used for
  * maps of smart pointers to immutable heap instances of object types.
- * Shared and exclusive locking is used based on lookup or modify operations. 
+ * Shared and exclusive locking is used based on lookup or modify operations.
  * @file ucommon/mapref.h
  */
 
@@ -95,7 +95,7 @@ protected:
 		size_t count, alloc;
 
 		explicit Map(void *addr, size_t indexes, size_t paging = 0);
-	
+
 		inline LinkedObject **get(void) {
 			return reinterpret_cast<LinkedObject **>(((caddr_t)(this)) + sizeof(Map));
 		}
@@ -229,7 +229,7 @@ protected:
 		}
 		MapRef::commit();
 		return false;
-	}	
+	}
 
 public:
 	class instance : public MapRef::Instance
@@ -307,7 +307,7 @@ public:
 		}
 		release();
 		return typeref<V>();
-	}	
+	}
 
 	typeref<V> take(typeref<K>& key) {
 		size_t path = mapkeypath<K>(key);
@@ -325,7 +325,7 @@ public:
 		}
 		commit();
 		return typeref<V>();
-	}	
+	}
 
 	inline bool remove(typeref<K>& key) {
 		return erase(key);
@@ -347,7 +347,7 @@ public:
 
 	inline void operator()(typeref<K>& key, typeref<V>& val) {
 		value(key, val);
-	}	
+	}
 
 	inline void operator()(K k, V v) {
 		typeref<K> key(k);
@@ -374,7 +374,7 @@ protected:
 		MapRef::commit();
 		return false;
 	}
-	
+
 public:
 	class instance : public MapRef::Instance
 	{

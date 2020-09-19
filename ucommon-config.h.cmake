@@ -1,5 +1,5 @@
 /* Copyright (C) 2009-2014 David Sugar, Tycho Softworks.
-   Copyright (C) 2015 Cherokees of Idaho.
+   Copyright (C) 2015-2020 Cherokees of Idaho.
 
    This file is free software; as a special exception the author gives
    unlimited permission to copy and/or distribute it, with or without
@@ -100,7 +100,6 @@
 #cmakedefine HAVE_OPENSSL_FIPS_H 1
 #cmakedefine HAVE_OPENSSL_RSA_H 1
 #cmakedefine HAVE_STDATOMIC_H 1
-#cmakedefine HAVE_STDALIGN_H 1
 
 #cmakedefine POSIX_TIMERS 1
 

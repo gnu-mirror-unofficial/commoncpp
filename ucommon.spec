@@ -1,7 +1,7 @@
 #
 # spec file for package ucommon
 #
-# Copyright (c) 2015 Cherokees of Idaho.
+# Copyright (c) 2015-2020 Cherokees of Idaho.
 # Copyright (c) 2008-2014 David Sugar, Tycho Softworks.
 #
 # All modifications and additions to the file contributed by third parties
@@ -23,7 +23,7 @@
 %define	build_docs	0
 %endif
 Name:           ucommon
-Version:        7.0.0
+Version:        7.0.1
 Release:        1
 Summary:        Portable C++ runtime for threads and sockets
 License:        LGPL-3.0+

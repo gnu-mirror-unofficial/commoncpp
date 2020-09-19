@@ -1,4 +1,4 @@
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -158,7 +158,7 @@ inline size_t mapped_keypath(const T *addr)
 	if(!addr)
 		return 0;
 
-	return MappedPointer::keypath((const uint8_t *)addr, sizeof(T)); 
+	return MappedPointer::keypath((const uint8_t *)addr, sizeof(T));
 }
 
 template<typename T>

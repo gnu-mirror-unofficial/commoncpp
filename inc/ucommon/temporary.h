@@ -1,5 +1,5 @@
 // Copyright (C) 2006-2014 David Sugar, Tycho Softworks.
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -93,7 +93,7 @@ public:
     inline temporary(size_t size = 1) {
         array = new T[size];
         used = size;
-    }    
+    }
 
     inline temporary(size_t size, const T initial) {
         array = new T[size];
@@ -117,7 +117,7 @@ public:
 
     inline operator T&() const {
         return array[0];
-    }        
+    }
 
     /**
      * Access heap object through our temporary directly.
@@ -181,17 +181,17 @@ public:
     }
 
     inline size_t read(FILE *fp) {
-        return (fp == NULL) || (array == NULL) ? 
+        return (fp == NULL) || (array == NULL) ?
             0 : fread(array, sizeof(T), used, fp);
     }
 
     inline size_t write(FILE *fp) {
-        return (fp == NULL) || (array == NULL) ? 
+        return (fp == NULL) || (array == NULL) ?
             0 : fwrite(array, sizeof(T), used, fp);
     }
 
     inline size_t seek(FILE *fp, long pos) {
-        return (fp == NULL) ? 
+        return (fp == NULL) ?
             0 : (fseek(fp, sizeof(T) * pos, SEEK_CUR) / sizeof(T));
     }
 };
@@ -254,17 +254,17 @@ public:
     }
 
     inline size_t read(FILE *fp) {
-        return (fp == NULL) || (object == NULL) ? 
+        return (fp == NULL) || (object == NULL) ?
             0 : String::count(fgets(object, (socksize_t)used, fp));
     }
-    
+
     inline size_t write(FILE *fp) {
-        return (fp == NULL) || (object == NULL) ? 
+        return (fp == NULL) || (object == NULL) ?
             0 : fputs(object, fp);
     }
 
     inline size_t seek(FILE *fp, long pos) {
-        return (fp == NULL) ? 
+        return (fp == NULL) ?
             0 : fseek(fp, pos, SEEK_CUR);
     }
 };
@@ -320,17 +320,17 @@ public:
     }
 
     inline size_t read(FILE *fp) {
-        return (fp == NULL) || (object == NULL) ? 
+        return (fp == NULL) || (object == NULL) ?
             0 : fread(object, 1, used, fp);
     }
-    
+
     inline size_t write(FILE *fp) {
-        return (fp == NULL) || (object == NULL) ? 
+        return (fp == NULL) || (object == NULL) ?
             0 : fwrite(object, 1, used, fp);
     }
 
     inline size_t seek(FILE *fp, long pos) {
-        return (fp == NULL) ? 
+        return (fp == NULL) ?
             0 : fseek(fp, pos, SEEK_CUR);
     }
 

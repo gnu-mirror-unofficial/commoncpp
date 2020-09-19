@@ -1,5 +1,5 @@
 // Copyright (C) 2006-2014 David Sugar, Tycho Softworks.
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -29,10 +29,6 @@
 #include <limits.h>
 #include <string.h>
 #include <stdio.h>
-
-#ifdef  HAVE_STDALIGN_H
-#include <stdalign.h>
-#endif
 
 #if defined(_MSC_VER) && _MSC_VER >= 1800
 #include <malloc.h>
@@ -234,7 +230,7 @@ memalloc(ps)
 }
 
 mempager::mempager(const mempager& copy) :
-memalloc(copy) 
+memalloc(copy)
 {
     pthread_mutex_init(&mutex, NULL);
 }

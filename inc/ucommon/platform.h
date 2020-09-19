@@ -1,5 +1,5 @@
 // Copyright (C) 2006-2014 David Sugar, Tycho Softworks.
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -25,6 +25,21 @@
  * @file ucommon/platform.h
  */
 
+#ifdef __clang__
+#pragma clang diagnostic ignored "-Wpadded"
+#pragma clang diagnostic ignored "-Wswitch-enum"
+#pragma clang diagnostic ignored "-Wmissing-noreturn"
+#pragma clang diagnostic ignored "-Wold-style-cast"
+#pragma clang diagnostic ignored "-Wcast-qual"
+#pragma clang diagnostic ignored "-Wzero-as-null-pointer-constant"
+#endif
+
+#ifdef __GNUC__
+#pragma GCC diagnostic ignored "-Wunused-result"
+#pragma GCC diagnostic ignored "-Wold-style-cast"
+#pragma GCC diagnostic ignored "-Wcast-qual"
+#pragma GCC diagnostic ignored "-Wzero-as-null-pointer-constant"
+#endif
 
 #include <cstdlib>
 #include <cstddef>
@@ -160,7 +175,7 @@ T protocol_cast(S *s) {
 #define __DELETE_COPY(x)        inline x(const x&);\
                                 inline x& operator=(const x&)
 #define __DELETE_DEFAULTS(x)    inline x();\
-                                __DELETE_COPY(x)    
+                                __DELETE_COPY(x)
 #else
 #define __FINAL                 final
 #define __OVERRIDE              override
@@ -175,17 +190,17 @@ T protocol_cast(S *s) {
 #if defined(__GNUC_MINOR__) && !defined(__clang__)
 #define nullptr __null
 #elif !defined(__clang__) || (defined(__clang__) && defined(__linux__))
-const class nullptr_t 
+const class nullptr_t
 {
 public:
     template<class T>
     inline operator T*() const {
-        return 0; 
+        return 0;
     }
 
     template<class C, class T>
     inline operator T C::*() const {
-        return 0; 
+        return 0;
     }
 
 private:
@@ -289,7 +304,7 @@ typedef size_t socksize_t;
 #if defined(UCOMMON_RUNTIME) || defined(UCOMMON_STATIC)
 #define __SHARED
 #else
-#define __SHARED __EXPORT
+#define __SHARED    __declspec(dllimport)
 #endif
 
 #else
@@ -311,7 +326,7 @@ typedef size_t socksize_t;
 #define __MINGW_WINPTHREAD__
 #include <pthread.h>   // gnu libstdc++ now requires a win pthread
 typedef size_t stacksize_t;
-#else   
+#else
 #define _MSTHREADS_
 typedef DWORD pthread_t;
 typedef DWORD pthread_key_t;
@@ -322,7 +337,7 @@ typedef char *caddr_t;
 typedef HANDLE fd_t;
 typedef SOCKET socket_t;
 
-#ifdef  _MSC_VER
+#if defined(_MSC_VER) && defined(_CRT_NO_TIME_T)
 typedef struct timespec {
     time_t tv_sec;
     long  tv_nsec;
@@ -431,7 +446,7 @@ typedef unsigned __int64 uint64_t;
 typedef char *caddr_t;
 
 #include <stdio.h>
-#define snprintf(p, s, f, ...) _snprintf_s(p, s, _TRUNCATE, f, __VA_ARGS__) 
+#define snprintf(p, s, f, ...) _snprintf_s(p, s, _TRUNCATE, f, __VA_ARGS__)
 #define vsnprintf(p, s, f, a) _vsnprintf_s(p, s, _TRUNCATE, f, a)
 
 #else
@@ -575,7 +590,7 @@ inline T polypointer_cast(S *s)
 #else
     return static_cast<T>(s);
 #endif
-}   
+}
 
 template<class T, class S>
 inline T polyconst_cast(S *s)
@@ -587,7 +602,7 @@ template<class T, class S>
 inline T polystatic_cast(S *s)
 {
     return static_cast<T>(s);
-}    
+}
 
 template<class T, class S>
 inline T polydynamic_cast(S *s)
@@ -597,14 +612,14 @@ inline T polydynamic_cast(S *s)
 #else
     return static_cast<T>(s);
 #endif
-}    
+}
 
 template<class T, class S>
 inline T& polyreference_cast(S *s)
 {
     __THROW_DEREF(s);
     return *(static_cast<T*>(s));
-}    
+}
 
 template<typename T>
 inline T& reference_cast(T *pointer) {

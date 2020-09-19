@@ -1,6 +1,6 @@
 // Copyright (C) 1999-2005 Open Source Telecom Corporation.
 // Copyright (C) 2006-2014 David Sugar, Tycho Softworks.
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -564,7 +564,7 @@ public:
      * inet_addr() or htonl()
      */
     IPV4Address &operator=(in_addr_t addr) {
-        return IPV4Address::operator =(addr); 
+        return IPV4Address::operator =(addr);
     }
 };
 
@@ -609,7 +609,7 @@ public:
      * inet_addr() or htonl()
      */
     IPV4Address &operator=(in_addr_t addr) {
-        return IPV4Address::operator =(addr); 
+        return IPV4Address::operator =(addr);
     }
 
     /**
@@ -896,8 +896,8 @@ public:
      * contains.  This usually only happens with IPV6Host objects
      * where multiple IP addresses are returned for a DNS lookup
      */
-    size_t getAddressCount() const { 
-        return addr_count; 
+    size_t getAddressCount() const {
+        return addr_count;
     }
 
     IPV6Address &operator=(const char *str);

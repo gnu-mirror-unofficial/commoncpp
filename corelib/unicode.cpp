@@ -1,5 +1,5 @@
 // Copyright (C) 2009-2014 David Sugar, Tycho Softworks.
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -77,7 +77,7 @@ ucs4_t utf8::get(const char *cp)
         return EOF;
 
     while(count--) {
-        ch = (uint8_t)*(cp++); 
+        ch = (uint8_t)*(cp++);
         if(!ch)
             return EOF;
         if((ch & 0xc0) != 0x80)
@@ -252,7 +252,7 @@ size_t utf8::pack(unicode_t buffer, const char *str, size_t len)
         ++used;
     }
     *target = (wchar_t)0;
-    return used;        
+    return used;
 }
 
 void utf8::put(ucs4_t code, char *buffer)
@@ -503,7 +503,7 @@ size_t UString::get(unicode_t output, size_t points) const
     const char *buf = "";
     if(str)
         buf = str->text;
-        
+
     return utf8::pack(output, buf, points);
 }
 

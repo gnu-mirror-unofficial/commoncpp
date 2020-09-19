@@ -1,5 +1,5 @@
 // Copyright (C) 2006-2014 David Sugar, Tycho Softworks.
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -1318,8 +1318,8 @@ bool Socket::address::isAny(const struct sockaddr *address)
         return reinterpret_cast<const sockaddr_in*>(address)->sin_addr.s_addr == INADDR_ANY;
     case AF_INET6:
         return memcmp(
-            &reinterpret_cast<const sockaddr_in6*>(address)->sin6_addr, 
-            &in6addr_any, 
+            &reinterpret_cast<const sockaddr_in6*>(address)->sin6_addr,
+            &in6addr_any,
             sizeof(in6addr_any)) == 0;
     default:
         return false;
@@ -1336,8 +1336,8 @@ bool Socket::address::isLoopback(const struct sockaddr *address)
         return reinterpret_cast<const sockaddr_in*>(address)->sin_addr.s_addr == htonl(INADDR_LOOPBACK);
     case AF_INET6:
         return memcmp(
-            &reinterpret_cast<const sockaddr_in6*>(address)->sin6_addr, 
-            &in6addr_loopback, 
+            &reinterpret_cast<const sockaddr_in6*>(address)->sin6_addr,
+            &in6addr_loopback,
             sizeof(in6addr_loopback)) == 0;
     default:
         return false;
@@ -2901,7 +2901,7 @@ unsigned Socket::segsize(socket_t so, unsigned size)
         break;
     }
 #ifdef  IP_MTU
-    getsockopt(so, IPPROTO_IP, IP_MTU, &size, &alen);
+    getsockopt(so, IPPROTO_IP, IP_MTU, (char *)&size, &alen);
 #else
     size = 0;
 #endif

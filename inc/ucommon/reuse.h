@@ -1,5 +1,5 @@
 // Copyright (C) 2006-2014 David Sugar, Tycho Softworks.
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -18,8 +18,8 @@
 
 /**
  * Basic array and reusable object factory heap support.
- * This offers ucommon support for forming reusable object pools.  Reusable 
- * object pools can be tied to local heaps and offer a means to create type 
+ * This offers ucommon support for forming reusable object pools.  Reusable
+ * object pools can be tied to local heaps and offer a means to create type
  * factories that do not require global locking through malloc.
  * @file ucommon/reuse.h
  */

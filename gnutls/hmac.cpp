@@ -1,5 +1,5 @@
 // Copyright (C) 2010-2014 David Sugar, Tycho Softworks.
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -48,7 +48,7 @@ void HMAC::release(void)
 
 int __context::map_hmac(const char *type)
 {
-    if(eq_case(type, "sha") || eq_case(type, "sha1") || eq_case(type, "sha160")) 
+    if(eq_case(type, "sha") || eq_case(type, "sha1") || eq_case(type, "sha160"))
         return GNUTLS_MAC_SHA1;
     else if(eq_case(type, "sha256"))
         return GNUTLS_MAC_SHA256;

@@ -1,4 +1,4 @@
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -24,7 +24,7 @@
 
 namespace ucommon {
 
-TypeRef::Counted::Counted(void *addr, size_t objsize, TypeRelease *ar) : 
+TypeRef::Counted::Counted(void *addr, size_t objsize, TypeRelease *ar) :
 ObjectProtocol()
 {
     this->offset = (unsigned)((char *)this - (char *)addr);
@@ -40,7 +40,7 @@ void TypeRef::Counted::dealloc()
         rel->dealloc(this);
         return;
     }
-        
+
     void *memory = (void *)((char *)this - offset);
     delete this;
     ::free(memory);
@@ -145,7 +145,7 @@ void typeref_guard::set(const TypeRef& pointer)
     sync.unlock();
 }
 
-typeref<const char *>::value::value(caddr_t addr, size_t objsize, const char *str, TypeRelease *ar) : 
+typeref<const char *>::value::value(caddr_t addr, size_t objsize, const char *str, TypeRelease *ar) :
 TypeRef::Counted(addr, objsize, ar)
 {
     if(str)
@@ -154,7 +154,7 @@ TypeRef::Counted(addr, objsize, ar)
 	    mem[0] = 0;
 }
 
-void typeref<const char *>::value::destroy(void) 
+void typeref<const char *>::value::destroy(void)
 {
 	count.clear();
 	release();
@@ -170,7 +170,7 @@ typeref<const char *>::typeref(const char *str, TypeRelease *ar) :
 TypeRef()
 {
     size_t size = 0;
-    
+
     if(str)
         size = strlen(str);
 
@@ -203,7 +203,7 @@ const char *typeref<const char *>::operator()(ssize_t offset) const
     return &v->mem[v->len() + offset];
 }
 
-const char *typeref<const char *>::operator*() const 
+const char *typeref<const char *>::operator*() const
 {
     value *v = polystatic_cast<value *>(ref);
     if(!v)
@@ -221,7 +221,7 @@ size_t typeref<const char *>::len() const
     return v->len();
 }
 
-const typeref<const char *> typeref<const char *>::operator+(const char *str2) const 
+const typeref<const char *> typeref<const char *>::operator+(const char *str2) const
 {
     value *v1 = polystatic_cast<value *>(ref);
     const char *str1 = "";
@@ -243,7 +243,7 @@ const typeref<const char *> typeref<const char *>::operator+(const char *str2) c
     result.assign(results);
     return result;
 }
-        
+
 typeref<const char *>& typeref<const char *>::operator=(const typeref<const char *>& objref)
 {
     TypeRef::set(objref);
@@ -376,8 +376,8 @@ bool typeref<const char *>::operator<(const typeref<const char *>& ptr) const
     return strcmp(&(v1->mem[0]), &(v2->mem[0])) < 0:
 #endif
 }
-    
-typeref<const uint8_t *>::value::value(caddr_t addr, size_t objsize, const uint8_t *str, TypeRelease *ar) : 
+
+typeref<const uint8_t *>::value::value(caddr_t addr, size_t objsize, const uint8_t *str, TypeRelease *ar) :
 TypeRef::Counted(addr, objsize, ar)
 {
     if(objsize && str)
@@ -416,7 +416,7 @@ TypeRef()
     set(mode, 0, bits);
 }
 
-void typeref<const uint8_t *>::value::destroy(void) 
+void typeref<const uint8_t *>::value::destroy(void)
 {
 	count.clear();
 	release();
@@ -509,7 +509,7 @@ size_t TypeRef::size(void) const
     return ref->size;
 }
 
-unsigned TypeRef::copies() const 
+unsigned TypeRef::copies() const
 {
 	if(!ref)
 		return 0;
@@ -536,7 +536,7 @@ typeref<const char *> typeref<const uint8_t *>::b64()
     return str;
 }
 
-bool typeref<const uint8_t *>::operator==(const typeref<const uint8_t *>& ptr) const 
+bool typeref<const uint8_t *>::operator==(const typeref<const uint8_t *>& ptr) const
 {
     value *v1 = polystatic_cast<value*>(ref);
     value *v2 = polystatic_cast<value*>(ptr.ref);
@@ -545,7 +545,7 @@ bool typeref<const uint8_t *>::operator==(const typeref<const uint8_t *>& ptr) c
     return !memcmp(&(v1->mem[0]), &(v2->mem[0]), v1->size);
 }
 
-bool typeref<const uint8_t *>::operator==(value *bytes) const 
+bool typeref<const uint8_t *>::operator==(value *bytes) const
 {
     value *v = polystatic_cast<value *>(ref);
     if(!v || !bytes || v->size != bytes->size)
@@ -553,7 +553,7 @@ bool typeref<const uint8_t *>::operator==(value *bytes) const
     return !memcmp(&(v->mem[0]), &(bytes->mem[0]), v->size);
 }
 
-const typeref<const uint8_t *> typeref<const uint8_t *>::operator+(const typeref<const uint8_t *>&add) const 
+const typeref<const uint8_t *> typeref<const uint8_t *>::operator+(const typeref<const uint8_t *>&add) const
 {
     value *v1 = polystatic_cast<value *>(ref);
     value *v2 = polystatic_cast<value *>(add.ref);
@@ -693,7 +693,7 @@ void TypeRelease::dealloc(TypeRef::Counted *obj)
         delegate->release(obj);
     else
         release(obj);
-} 
+}
 
 class __LOCAL TypeSecure __FINAL : public TypeRelease
 {
@@ -713,8 +713,8 @@ private:
     void release(TypeRef::Counted *obj) __FINAL;
 
 public:
-    TypeReleaseLater() { 
-        list = nullptr; 
+    TypeReleaseLater() {
+        list = nullptr;
     }
 
     unsigned purge(void) __FINAL;

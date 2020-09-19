@@ -1,5 +1,5 @@
 // Copyright (C) 2006-2014 David Sugar, Tycho Softworks.
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -460,7 +460,7 @@ private:
 
 	size_t count;
 	const uint8_t *pos, *bp;
-	
+
 public:
 	imemstream(const uint8_t *data, size_t size);
 	imemstream(const char *data);
@@ -497,7 +497,7 @@ private:
 	size_t count;
 	uint8_t *pos, *bp;
 	bool zb;
-	
+
 public:
 	explicit omemstream(uint8_t *data, size_t size);
 	omemstream(char *data, size_t size);
@@ -581,7 +581,7 @@ inline std::string& operator+(std::string& target, String& source) {
 inline std::string& operator+=(std::string& target, String& source) {
     return _stream_operators::append(target, source);
 }
- 
+
 inline std::ostream& operator<<(std::ostream& os, Socket::address& addr) {
 #ifdef  AF_INET6
     char buf[INET6_ADDRSTRLEN];

@@ -1,3 +1,10 @@
+ucommon (1:7.0.1-1) UNRELEASED; urgency=low
+
+  * stdalign.h not used
+  * code cleanup for modern distros and compilers
+
+ -- David Sugar <dyfet@gnutelephony.org>  Sat, 19 Sep 2020 12:22:26 -0400
+
 ucommon (1:7.0.0-1) UNRELEASED; urgency=high
 
   * Clean new ucommon 8.0 abi
@@ -296,7 +303,7 @@ ucommon (5.2.2-1) UNRELEASED; urgency=low
 
 ucommon (5.2.1-1) UNRELEASED; urgency=low
 
-  * shell::release added to api 
+  * shell::release added to api
 
  -- David Sugar <dyfet@gnutelephony.org>  Sat, 11 Feb 2012 07:17:03 -0500
 
@@ -423,7 +430,7 @@ ucommon (4.1.5-1) UNRELEASED; urgency=low
 
 ucommon (4.1.3-1) UNRELEASED; urgency=low
 
-  * Further timer fixes 
+  * Further timer fixes
 
  -- David Sugar <dyfet@gnutelephony.org>  Thu, 17 Feb 2011 19:16:32 -0500
 
@@ -488,7 +495,7 @@ ucommon (3.3.7-1) UNRELEASED; urgency=low
 
 ucommon (3.3.6-1) UNRELEASED; urgency=low
 
-  * Grouping operator added. 
+  * Grouping operator added.
 
  -- David Sugar <dyfet@gnutelephony.org>  Tue, 07 Sep 2010 13:29:13 -0400
 
@@ -508,7 +515,7 @@ ucommon (3.3.4-1) UNRELEASED; urgency=high
 ucommon (3.3.3-1) UNRELEASED; urgency=low
 
   * More complete numeric to string expressions.
-  * Process detach handling. 
+  * Process detach handling.
 
  -- David Sugar <dyfet@gnutelephony.org>  Sun, 08 Aug 2010 22:39:11 -0400
 
@@ -567,7 +574,7 @@ ucommon (3.1.2-1) UNRELEASED; urgency=medium
 ucommon (3.1.0-1) UNRELEASED; urgency=low
 
   * Secure crytographic library added to framework
-  * Documentation improved 
+  * Documentation improved
 
  -- David Sugar <dyfet@gnutelephony.org>  Tue, 22 Jun 2010 21:49:37 -0400
 
@@ -619,7 +626,7 @@ ucommon (2.1.4-1) UNRELEASED; urgency=low
 
   * new utf8_pointer string class and further unicode support
   * new component access api for datetime objects
-  * New object containers for object lists, fifo's, and queues 
+  * New object containers for object lists, fifo's, and queues
 
  -- David Sugar <dyfet@gnutelephony.org>  Tue, 18 May 2010 17:19:58 -0400
 

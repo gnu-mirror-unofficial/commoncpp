@@ -1,5 +1,5 @@
 // Copyright (C) 2010-2014 David Sugar, Tycho Softworks.
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -51,7 +51,7 @@ void Digest::set(const char *type)
     else if(eq_case(type, "sha2") || eq_case(type, "sha256")) {
         hashtype = "2";
         context = new sha256_ctx;
-        sha256_begin((sha256_ctx *)context); 
+        sha256_begin((sha256_ctx *)context);
     }
     else if(eq_case(type, "sha384")) {
         hashtype = "3";

@@ -1,5 +1,5 @@
 // Copyright (C) 2006-2014 David Sugar, Tycho Softworks.
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -782,7 +782,7 @@ void String::set(const char *s, char overflow, size_t offset, size_t size)
 void String::rset(const char *s, char overflow, size_t offset, size_t size)
 {
     size_t len = count(s);
-    
+
     if(!s || !*s || !str)
         return;
 
@@ -1919,7 +1919,7 @@ String String::hex(const uint8_t *binary, size_t size)
         buf += 2;
     }
     return out;
-} 
+}
 
 size_t String::hexdump(const uint8_t *binary, char *string, const char *format)
 {

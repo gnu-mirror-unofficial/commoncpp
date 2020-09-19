@@ -1,6 +1,6 @@
 // Copyright (C) 1999-2005 Open Source Telecom Corporation.
 // Copyright (C) 2006-2014 David Sugar, Tycho Softworks.
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -211,7 +211,7 @@ void Dir::open(const char *fname)
 #endif
 #endif // WIN32
 }
-	
+
 Dir::~Dir()
 {
 	close();
@@ -240,7 +240,7 @@ bool Dir::rewind(void)
 #else
 	if(!dir)
 		rtn = false;
-	else 
+	else
 		rewinddir(dir);
 #endif
 	return rtn;
@@ -280,7 +280,7 @@ const char *Dir::getName(void)
 
 	if(hDir == INVALID_HANDLE_VALUE)
 		return NULL;
-	
+
 	if(retname)
 	{
 		name = NULL;
@@ -295,7 +295,7 @@ const char *Dir::getName(void)
 
 #ifdef	HAVE_READDIR_R
 	readdir_r(dir, save, &entry);
-#else 
+#else
 	entry = readdir(dir);
 #endif
 	if(!entry)
@@ -310,7 +310,7 @@ DirTree::DirTree(const char *prefix, unsigned depth)
 	max = ++depth;
 	dir = new Dir[depth];
 	current = 0;
-	
+
 	open(prefix);
 }
 
@@ -339,7 +339,7 @@ void DirTree::open(const char *prefix)
 	while(prefixpos && path[prefixpos - 1] == '/')
 		path[prefixpos--] = 0;
 
-	dir[current++].open(prefix);	
+	dir[current++].open(prefix);
 }
 
 DirTree::~DirTree()
@@ -411,7 +411,7 @@ char *DirTree::getPath(void)
 			continue;
 		}
 		snprintf(cp + 1, sizeof(path) - strlen(path) - 2, "%s", name);
-	
+
 		if(::stat(path, &ino))
 		{
 			ino.st_mode = 0;
@@ -438,7 +438,7 @@ char *DirTree::getPath(void)
 	if(!current)
 		return NULL;
 
-	return path;	
+	return path;
 }
 
 }	// end namespace

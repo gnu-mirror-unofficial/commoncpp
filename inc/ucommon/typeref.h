@@ -1,4 +1,4 @@
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -93,7 +93,7 @@ public:
 		friend class TypeRelease;
 
 		union {
-			TypeRelease *autorelease;			
+			TypeRelease *autorelease;
 			Counted *linkrelease;
 		};
 
@@ -103,7 +103,7 @@ public:
 
 		/**
 		 * Construction of aligned container.  This is used to inform the
-		 * object of the underlying real address it exists on the heap 
+		 * object of the underlying real address it exists on the heap
 		 * since malloc is not assured to be atomically aligned by default.
 		 * @param address of actual allocation.
 		 * @param size of object allocated.
@@ -155,10 +155,10 @@ public:
 
 		/**
 		 * Release a copy of this object.  Only when the reference
-		 * count reaches 0 is it destroyed. 
+		 * count reaches 0 is it destroyed.
 		 */
 		void release();
-	};		
+	};
 
 protected:
 	Counted *ref;		// heap reference...
@@ -228,9 +228,9 @@ public:
 	/**
 	 * Get number of references to container.
 	 * @return total number of pointers referencing container.
-	 */	
+	 */
 	unsigned copies() const;
-	
+
 	/**
 	 * Check if pointer currently has a heap container.
 	 * @return true if we are referencing a container.
@@ -250,7 +250,7 @@ public:
 	/**
 	 * Special weak-public means to copy a container reference.
 	 * This uses the base class container which is not public, so
-	 * only derived type specific smart pointers can actually use 
+	 * only derived type specific smart pointers can actually use
 	 * this method.  It is made public because making it protected
 	 * actually makes it inaccessible to template derived classes.
 	 * @param target smart pointer object to set.
@@ -284,7 +284,7 @@ protected:
 	TypeRelease *delegate;
 
 	void enlist(TypeRef::Counted **root, TypeRef::Counted *obj);
-	
+
 	TypeRef::Counted *delist(TypeRef::Counted **root);
 
 	virtual void release(TypeRef::Counted *obj);
@@ -304,7 +304,7 @@ class __EXPORT typeref_guard : protected TypeRef
 {
 private:
 	friend class TypeRef;
-	
+
 	mutable Mutex sync;
 
 public:
@@ -334,12 +334,12 @@ private:
 	public:
 		T data;
 
-		inline value(caddr_t mem, const T& object, TypeRelease *ar = &R) : 
+		inline value(caddr_t mem, const T& object, TypeRelease *ar = &R) :
 		Counted(mem, sizeof(value), ar) {
 			data = object;
 		}
 	};
- 
+
 public:
 	inline typeref() :	TypeRef() {}
 
@@ -351,7 +351,7 @@ public:
 
 	inline typeref(const T& object, TypeRelease *ar = &R) : TypeRef() {
 		caddr_t p = R.allocate(sizeof(value));
-		TypeRef::set(new(mem(p)) value(p, object, ar)); 
+		TypeRef::set(new(mem(p)) value(p, object, ar));
 	}
 
 	inline explicit typeref(Counted *object) : TypeRef(object) {}
@@ -399,7 +399,7 @@ public:
 		if(!v1 || !v2)
 			return false;
 		return v1->data == v2->data;
-	}	
+	}
 
 	inline bool operator==(const T& obj) const {
 		value *v = polystatic_cast<value *>(ref);
@@ -470,7 +470,7 @@ public:
 	};
 
 	typeref();
-	
+
 	typeref(const typeref& copy);
 
 	typeref(const char *str, TypeRelease *ar = &auto_release);
@@ -585,7 +585,7 @@ public:
 	};
 
 	typeref();
-	
+
 	typeref(const typeref& copy);
 
 	typeref(uint8_t *str, size_t size, TypeRelease *ar = &auto_release);
@@ -636,7 +636,7 @@ public:
 
 	bool get(size_t offset);
 
-	size_t count(size_t offset, size_t bits = 1);	
+	size_t count(size_t offset, size_t bits = 1);
 
 	void assign(value *bytes);
 
@@ -656,8 +656,8 @@ template<TypeRelease& R>
 class stringref : public typeref<const char *>
 {
 public:
-	inline stringref() : typeref<const char *>() {} 
-	
+	inline stringref() : typeref<const char *>() {}
+
 	inline stringref(const stringref& copy) : typeref<const char *>(copy) {}
 
 	inline stringref(const char *str) : typeref<const char *>(str, &R) {}

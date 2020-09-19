@@ -1,5 +1,5 @@
 // Copyright (C) 2010-2014 David Sugar, Tycho Softworks.
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -53,7 +53,7 @@ int __context::map_cipher(const char *cipher)
         else if(eq_case(lpart, "ofb"))
             modeid = OFB;
         else
-            modeid = NONE;    
+            modeid = NONE;
     }
     else if(eq_case(cipher, "aes128") || eq_case(cipher, "aes"))
         return GNUTLS_CIPHER_AES_128_CBC;
@@ -183,7 +183,7 @@ void Cipher::Key::assign(const char *text, size_t size, const uint8_t *salt, uns
 
         for(loop = 1; loop < count; ++loop) {
             memcpy(temp, previous, mdlen);
-            gnutls_hash_fast((MD_ID)hashid, temp, mdlen, previous); 
+            gnutls_hash_fast((MD_ID)hashid, temp, mdlen, previous);
         }
 
         size_t pos = 0;
@@ -215,7 +215,7 @@ void Cipher::Key::set(const char *cipher, const char *digest)
 void Cipher::Key::set(const char *cipher)
 {
     clear();
-    
+
     algoid = __context::map_cipher(cipher);
 
     if(algoid) {

@@ -1,5 +1,5 @@
 # Copyright (C) 2006-2014 David Sugar, Tycho Softworks.
-# Copyright (C) 2015 Cherokees of Idaho.
+# Copyright (C) 2015-2020 Cherokees of Idaho.
 #
 # This file is free software; as a special exception the author gives
 # unlimited permission to copy and/or distribute it, with or without
@@ -9,10 +9,10 @@
 # WITHOUT ANY WARRANTY, to the extent permitted by law; without even the
 # implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-AC_INIT([ucommon],[7.0.0])
+AC_INIT([ucommon],[7.0.1])
 AC_CONFIG_SRCDIR([inc/ucommon/ucommon.h])
 
-LT_VERSION="8:0:0"
+LT_VERSION="8:1:0"
 OPENSSL_REQUIRES="0.9.7"
 
 AC_CONFIG_AUX_DIR(autoconf)
@@ -177,7 +177,7 @@ tlib=""
 
 AC_CHECK_HEADERS(stdint.h poll.h sys/mman.h sys/shm.h sys/poll.h sys/timeb.h endian.h sys/filio.h dirent.h sys/resource.h wchar.h netinet/in.h net/if.h)
 AC_CHECK_HEADERS(mach/clock.h mach-o/dyld.h linux/version.h sys/inotify.h sys/event.h syslog.h sys/wait.h termios.h termio.h fcntl.h unistd.h)
-AC_CHECK_HEADERS(sys/param.h sys/lockf.h sys/file.h dlfcn.h stdatomic.h stdalign.h)
+AC_CHECK_HEADERS(sys/param.h sys/lockf.h sys/file.h dlfcn.h stdatomic.h)
 
 AC_CHECK_HEADER(regex.h, [
     AC_DEFINE(HAVE_REGEX_H, [1], [have regex header])
@@ -661,7 +661,7 @@ AC_SUBST(GNUTLS_LIBS)
 AC_SUBST(LT_VERSION)
 AC_SUBST(localedir)
 
-AC_OUTPUT(Makefile corelib/Makefile commoncpp/Makefile PKGBUILD
+AC_OUTPUT(Makefile corelib/Makefile commoncpp/Makefile
 openssl/Makefile gnutls/Makefile nossl/Makefile utils/Makefile Doxyfile
 inc/Makefile inc/ucommon/Makefile inc/commoncpp/Makefile test/Makefile
 directive commoncpp.pc ucommon.pc ucommon.spec ucommon-config commoncpp-config)

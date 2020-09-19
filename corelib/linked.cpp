@@ -1,5 +1,5 @@
 // Copyright (C) 2006-2014 David Sugar, Tycho Softworks.
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -790,7 +790,7 @@ void DLinkedObject::enlistHead(OrderedIndex *r)
         delist();
 
     Root = r;
-    Prev = nullptr; 
+    Prev = nullptr;
     Next = nullptr;
 
     if(!Root->tail) {

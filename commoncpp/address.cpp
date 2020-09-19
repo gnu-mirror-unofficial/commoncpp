@@ -1,6 +1,6 @@
 // Copyright (C) 1999-2005 Open Source Telecom Corporation.
 // Copyright (C) 2006-2014 David Sugar, Tycho Softworks.
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -94,14 +94,14 @@ void IPV4MulticastValidator::operator()(const in_addr address) const
 #endif
 }
 
-IPV4Address::IPV4Address(const IPV4Validator *_validator) : 
-validator(_validator), ipaddr(NULL), addr_count(0), hostname(NULL) 
+IPV4Address::IPV4Address(const IPV4Validator *_validator) :
+validator(_validator), ipaddr(NULL), addr_count(0), hostname(NULL)
 {
     *this = (in_addr_t)INADDR_ANY;
 }
 
 IPV4Address::IPV4Address(const char *address, const IPV4Validator *_validator) :
-validator(_validator), ipaddr(NULL), addr_count(0), hostname(NULL) 
+validator(_validator), ipaddr(NULL), addr_count(0), hostname(NULL)
 {
     if(address == 0 || !strcmp(address, "*"))
         setAddress(NULL);
@@ -110,7 +110,7 @@ validator(_validator), ipaddr(NULL), addr_count(0), hostname(NULL)
 }
 
 IPV4Address::IPV4Address(struct in_addr addr, const IPV4Validator *_validator) :
-validator(_validator), ipaddr(NULL), hostname(NULL) 
+validator(_validator), ipaddr(NULL), hostname(NULL)
 {
     if ( this->validator ) {
         (*validator)(addr);
@@ -243,7 +243,7 @@ bool IPV4Address::operator==(const IPV4Address &a) const
     for(s = 0; s < smaller->addr_count; s++) {
         // bool found = false;
         for(l = 0; l < larger->addr_count &&
-            memcmp((char *)&smaller->ipaddr[s], (char *)&larger->ipaddr[l], sizeof(struct in_addr)); l++); 
+            memcmp((char *)&smaller->ipaddr[s], (char *)&larger->ipaddr[l], sizeof(struct in_addr)); l++);
         if(l == larger->addr_count) return false;
     }
     return true;
@@ -496,8 +496,8 @@ void IPV6MulticastValidator::operator()(const in6_addr address) const
 #endif
 }
 
-IPV6Address::IPV6Address(const IPV6Validator *_validator) : 
-validator(_validator), hostname(NULL) 
+IPV6Address::IPV6Address(const IPV6Validator *_validator) :
+validator(_validator), hostname(NULL)
 {
     addr_count = 1;
     ipaddr = new struct in6_addr[1];
@@ -505,7 +505,7 @@ validator(_validator), hostname(NULL)
 }
 
 IPV6Address::IPV6Address(const char *address, const IPV6Validator *_validator) :
-validator(_validator), ipaddr(NULL), addr_count(0), hostname(NULL) 
+validator(_validator), ipaddr(NULL), addr_count(0), hostname(NULL)
 {
     if(address == 0 || !strcmp(address, "*"))
         setAddress(NULL);
@@ -514,7 +514,7 @@ validator(_validator), ipaddr(NULL), addr_count(0), hostname(NULL)
 }
 
 IPV6Address::IPV6Address(struct in6_addr addr, const IPV6Validator *_validator) :
-validator(_validator), ipaddr(NULL), hostname(NULL) 
+validator(_validator), ipaddr(NULL), hostname(NULL)
 {
     if ( this->validator ) {
         (*validator)(addr);

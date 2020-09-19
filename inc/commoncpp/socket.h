@@ -1,7 +1,7 @@
 // Copyright (C) 1999-2005 Open Source Telecom Corporation.
 // Copyright (C) 2006-2013 David Sugar, Tycho Softworks.
 // Copyright (C) 2014 David Sugar, Tycho Softworks, Savoir-Faire Linux Inc.
-// Copyright (C) 2015 Cherokees of Idaho, Savoir-Faire Linux Inc.
+// Copyright (C) 2015-2020 Cherokees of Idaho, Savoir-Faire Linux Inc.
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -332,12 +332,12 @@ protected:
      * @param ia address of multicast group to join.
      */
     Error join(const ucommon::Socket::address &ia, int iface = 0);
-    inline Error join(const IPV4Multicast &ia) { 
-        return join(ucommon::Socket::address(getaddress(ia))); 
+    inline Error join(const IPV4Multicast &ia) {
+        return join(ucommon::Socket::address(getaddress(ia)));
     }
 #ifdef  CCXX_IPV6
-    inline Error join(const IPV6Multicast &ia, int iface = 0) { 
-        return join(ucommon::Socket::address(getaddress(ia)), iface); 
+    inline Error join(const IPV6Multicast &ia, int iface = 0) {
+        return join(ucommon::Socket::address(getaddress(ia)), iface);
     }
 #endif
 
@@ -348,12 +348,12 @@ protected:
      * @param ia address of multicast group to drop.
      */
     Error drop(const ucommon::Socket::address &ia, int iface = 0);
-    Error drop(const IPV4Multicast &ia) { 
-        return drop(ucommon::Socket::address(getaddress(ia))); 
+    Error drop(const IPV4Multicast &ia) {
+        return drop(ucommon::Socket::address(getaddress(ia)));
     }
 #ifdef  CCXX_IPV6
-    Error drop(const IPV6Multicast &ia, int iface = 0) { 
-        return drop(ucommon::Socket::address(getaddress(ia)), iface); 
+    Error drop(const IPV6Multicast &ia, int iface = 0) {
+        return drop(ucommon::Socket::address(getaddress(ia)), iface);
     }
 #endif
 

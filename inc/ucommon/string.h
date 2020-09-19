@@ -1,5 +1,5 @@
 // Copyright (C) 2006-2014 David Sugar, Tycho Softworks.
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -1133,7 +1133,7 @@ public:
      * @return true if equal.
      */
     static bool eq_case(const char *text1, const char *text2);
-    
+
     /**
      * Simple case insensitive equal test for strings.
      * @param text1 to test.
@@ -1541,7 +1541,7 @@ public:
      */
     inline char& operator[](size_t offset) const {
         if(offset >= S)
-            __THROW_RANGE("charbuf offset"); 
+            __THROW_RANGE("charbuf offset");
         return buffer[offset];
     }
 
@@ -1762,14 +1762,14 @@ public:
     }
 
     inline ~strdup_t() {
-        if(data) 
+        if(data)
             ::free(data);
     }
 
     inline strdup_t& operator=(char *str) {
-        if(data) 
-            ::free(data); 
-        data = str; 
+        if(data)
+            ::free(data);
+        data = str;
         return *this;
     }
 

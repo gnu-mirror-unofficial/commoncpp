@@ -3,7 +3,7 @@
 # ---------------
 
 #=============================================================================
-# Copyright (C) 2015 Cherokees of Idaho.
+# Copyright (C) 2015-2020 Cherokees of Idaho.
 #
 # This file is free software; as a special exception the author gives
 # unlimited permission to copy and/or distribute it, with or without
@@ -39,7 +39,7 @@ endmacro()
 macro(target_setuid_properties)
     if(UNIX)
         if(CMAKE_COMPILER_IS_GNUCXX AND NOT CMAKE_COMPILE_SETUID_FLAGS)
-            set(CMAKE_COMPILE_SETUID_FLAGS "-O2 -fPIE -fstack-protector -D_FORTIFY_SOURCE=2 --param ssp-buffer-size=4 -pie") 
+            set(CMAKE_COMPILE_SETUID_FLAGS "-O2 -fPIE -fstack-protector -D_FORTIFY_SOURCE=2 --param ssp-buffer-size=4 -pie")
             if(${CMAKE_SYSTEM_NAME} MATCHES "OpenBSD")
                 set(CMAKE_LINK_SETUID_FLAGS "-pie")
             else()

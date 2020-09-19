@@ -1,5 +1,5 @@
 // Copyright (C) 2006-2014 David Sugar, Tycho Softworks.
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -664,7 +664,7 @@ protected:
 
 public:
     typedef autoshared<Semaphore> autosync;
-        
+
     /**
      * Construct a semaphore with an initial count of threads to permit.
      * @param count of threads to permit, or special case 0 group release.

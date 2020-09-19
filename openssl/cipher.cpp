@@ -1,5 +1,5 @@
 // Copyright (C) 2010-2014 David Sugar, Tycho Softworks.
-// Copyroght (C) 2015 Cherokees of Idaho.
+// Copyroght (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //

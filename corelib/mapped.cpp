@@ -1,5 +1,5 @@
 // Copyright (C) 2006-2014 David Sugar, Tycho Softworks.
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -535,7 +535,7 @@ bool MappedMemory::copy(size_t offset, void *buffer, size_t bufsize) const
 void *MappedMemory::offset(size_t offset) const
 {
     if(offset >= size)
-        __THROW_RANGE("outside mapped memory"); 
+        __THROW_RANGE("outside mapped memory");
     return (void *)(map + offset);
 }
 

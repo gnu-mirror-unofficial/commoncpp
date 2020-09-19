@@ -1,5 +1,5 @@
 // Copyright (C) 2006-2014 David Sugar, Tycho Softworks.
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -26,6 +26,10 @@
 #include <string.h>
 #include <stdarg.h>
 #include <limits.h>
+
+#ifdef __APPLE__
+#include <sys/sysctl.h>
+#endif
 
 #if _POSIX_PRIORITY_SCHEDULING > 0
 #include <sched.h>
@@ -1311,9 +1315,8 @@ size_t Thread::cache(void)
     free(buffer);
     return line_size;
 #elif defined(__APPLE__)
-    size_t line_size = 0;
     size_t sizeof_line_size = sizeof(line_size);
-    sysctlbyname("hw.cachelinesize", &line_size, &sizeof_line_size, 0, 0);
+    sysctlbyname("hw.cachelinesize", (size_t *)&line_size, &sizeof_line_size, 0, 0);
     return line_size;
 #elif defined(_SC_LEVEL1_DCACHE_LINESIZE)
     line_size = sysconf(_SC_LEVEL1_DCACHE_LINESIZE);

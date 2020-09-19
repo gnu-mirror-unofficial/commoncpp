@@ -1,6 +1,6 @@
 // Copyright (C) 1999-2005 Open Source Telecom Corporation.
 // Copyright (C) 2006-2014 David Sugar, Tycho Softworks.
-// Copyright (C) 2015 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -164,7 +164,7 @@ public:
      * @param _mutex reference to mutex to aquire.
      */
     inline MutexLock( Mutex& _mutex ) : mutex( _mutex ) {
-        mutex.enterMutex(); 
+        mutex.enterMutex();
     }
 
     /**
@@ -172,7 +172,7 @@ public:
      */
     // this should be not-virtual
     inline ~MutexLock() {
-        mutex.leaveMutex(); 
+        mutex.leaveMutex();
     }
 };
 
@@ -239,14 +239,14 @@ public:
      * @param _tl reference to lock to aquire.
      */
     inline ReadLock( ThreadLock& _tl ) : tl( _tl ) {
-        tl.readLock(); 
+        tl.readLock();
     }
     /**
      * Post the semaphore automatically
      */
     // this should be not-virtual
     inline ~ReadLock() {
-        tl.unlock(); 
+        tl.unlock();
     }
 };
 
@@ -284,14 +284,14 @@ public:
      * @param _tl reference to threadlock to aquire.
      */
     inline WriteLock( ThreadLock& _tl ) : tl( _tl ) {
-        tl.writeLock(); 
+        tl.writeLock();
     }
     /**
      * Post the semaphore automatically
      */
     // this should be not-virtual
     inline ~WriteLock() {
-        tl.unlock(); 
+        tl.unlock();
     }
 };
 
@@ -363,14 +363,14 @@ public:
      * Wait for the semaphore
      */
     inline SemaphoreLock( Semaphore& _sem ) : sem( _sem ) {
-        sem.wait(); 
+        sem.wait();
     }
     /**
      * Post the semaphore automatically
      */
     // this should be not-virtual
     inline ~SemaphoreLock() {
-        sem.post(); 
+        sem.post();
     }
 };
 
