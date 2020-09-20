@@ -35,8 +35,7 @@ void HMAC::set(const char *digest, const secure::keybytes& key)
 
     hmactype = EVP_get_digestbyname(digest);
     if(hmactype && len) {
-        context = new ::HMAC_CTX;
-        HMAC_CTX_init((HMAC_CTX *)context);
+        context = HMAC_CTX_new();
         HMAC_Init((HMAC_CTX *)context, *key, (int)len, (const EVP_MD *)hmactype);
     }
 }
@@ -44,9 +43,7 @@ void HMAC::set(const char *digest, const secure::keybytes& key)
 void HMAC::release(void)
 {
     if(context) {
-        HMAC_cleanup((HMAC_CTX *)context);
-        memset(context, 0, sizeof(HMAC_CTX));
-        delete (HMAC_CTX *)context;
+        HMAC_CTX_free((HMAC_CTX *)context);
         context = NULL;
     }
 

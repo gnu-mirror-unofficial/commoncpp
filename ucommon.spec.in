@@ -32,7 +32,7 @@ BuildRequires:  doxygen
 BuildRequires:  gcc-c++
 BuildRequires:  graphviz-gd
 BuildRequires:  pkg-config
-BuildRequires:  pkgconfig(openssl) < 1.1
+BuildRequires:  pkgconfig(openssl)
 Requires:       %{libname} = %{version}-%{release}
 # historically we used a -bin for ucommon applications...
 Obsoletes:      %{name}-bin < %{version}-%{release}
@@ -65,7 +65,7 @@ of thread locking and synchronization.
 Summary:        Headers for building ucommon applications
 Group:          Development/Libraries/C and C++
 Requires:       %{libname} = %{version}-%{release}
-Requires:       pkgconfig(openssl) < 1.1
+Requires:       pkgconfig(openssl)
 Requires:       gcc-c++
 
 %description devel

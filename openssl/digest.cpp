@@ -37,7 +37,7 @@ void Digest::set(const char *type)
 
     hashtype = (void *)EVP_get_digestbyname(type);
     if(hashtype) {
-        context = new EVP_MD_CTX;
+        context = EVP_MD_CTX_new();
         EVP_MD_CTX_init((EVP_MD_CTX *)context);
         EVP_DigestInit_ex((EVP_MD_CTX *)context, (const EVP_MD *)hashtype, NULL);
     }
@@ -45,12 +45,8 @@ void Digest::set(const char *type)
 
 void Digest::release(void)
 {
-    if(context)
-        EVP_MD_CTX_cleanup((EVP_MD_CTX *)context);
-
     if(context) {
-        memset(context, 0, sizeof(EVP_MD_CTX));
-        delete (EVP_MD_CTX *)context;
+        EVP_MD_CTX_free((EVP_MD_CTX *)context);
         context = NULL;
     }
 
@@ -71,7 +67,7 @@ void Digest::reset(void)
 {
     if(!context) {
         if(hashtype) {
-            context = new EVP_MD_CTX;
+            context = EVP_MD_CTX_new();
             EVP_MD_CTX_init((EVP_MD_CTX *)context);
         }
         else

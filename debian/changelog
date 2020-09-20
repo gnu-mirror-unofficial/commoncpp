@@ -2,6 +2,7 @@ ucommon (1:7.0.1-1) UNRELEASED; urgency=low
 
   * stdalign.h not used
   * code cleanup for modern distros and compilers
+  * support modern openssl api
 
  -- David Sugar <dyfet@gnutelephony.org>  Sat, 19 Sep 2020 12:22:26 -0400
 

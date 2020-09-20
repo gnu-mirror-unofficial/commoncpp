@@ -108,7 +108,7 @@ void Cipher::release(void)
     keys.clear();
     if(context) {
         EVP_CIPHER_CTX_cleanup((EVP_CIPHER_CTX*)context);
-        delete (EVP_CIPHER_CTX*)context;
+        EVP_CIPHER_CTX_free((EVP_CIPHER_CTX*)context);
         context = NULL;
     }
 }
@@ -125,7 +125,7 @@ void Cipher::set(const key_t key, mode_t mode, uint8_t *address, size_t size)
     if(!keys.keysize)
         return;
 
-    context = new EVP_CIPHER_CTX;
+    context = EVP_CIPHER_CTX_new();
     EVP_CIPHER_CTX_init((EVP_CIPHER_CTX *)context);
     EVP_CipherInit_ex((EVP_CIPHER_CTX *)context, (EVP_CIPHER *)keys.algotype, NULL, keys.keybuf, keys.ivbuf, (int)mode);
     EVP_CIPHER_CTX_set_padding((EVP_CIPHER_CTX *)context, 0);
