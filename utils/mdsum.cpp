@@ -1,5 +1,5 @@
 // Copyright (C) 2010-2014 David Sugar, Tycho Softworks.
-// Copyright (C) 2015-2017 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -66,7 +66,7 @@ static void result(const char *path, int code)
         err = _TEXT("file or directory busy");
         break;
     case EINTR:
-        err = _TEXT("operation interupted");
+        err = _TEXT("operation interrupted");
         break;
     case EISDIR:
         err = _TEXT("is a directory");
@@ -181,7 +181,7 @@ int main(int argc, char **argv)
     secure::init();
     if(!Digest::has(*hash))
         shell::errexit(2, "*** %s: %s: %s\n",
-            argv0, *hash, _TEXT("unkown or unsupported digest method"));
+            argv0, *hash, _TEXT("unknown or unsupported digest method"));
 
     md = *hash;
 

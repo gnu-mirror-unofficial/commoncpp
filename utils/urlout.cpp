@@ -1,3 +1,21 @@
+// Copyright (C) 2013-2014 David Sugar, Tycho Softworks.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
+//
+// This file is part of GNU uCommon C++.
+//
+// GNU uCommon C++ is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published
+// by the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// GNU uCommon C++ is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public License
+// along with GNU uCommon C++.  If not, see <http://www.gnu.org/licenses/>.
+
 #include <ucommon/secure.h>
 #include <sys/stat.h>
 
@@ -27,7 +45,7 @@ int main(int argc, char **argv)
     const char *proto = "80";
     secure::client_t ctx = NULL;
     String svc;
-    
+
     if(eq(url, "https://", 8)) {
         url_secure = true;
         url += 8;
@@ -44,7 +62,7 @@ int main(int argc, char **argv)
     if(url_secure && secure::init()) {
         proto = "443";
         ctx = secure::client();
-        if(ctx->err() != secure::OK) 
+        if(ctx->err() != secure::OK)
             shell::errexit(2, _TEXT("%s: no certificates found"), argv[0]);
     }
 
@@ -65,7 +83,7 @@ int main(int argc, char **argv)
     web.open(host, svc);
 
     if(!web.is_open())
-        shell::errexit(1, _TEXT("%s: failed to access"), url); 
+        shell::errexit(1, _TEXT("%s: failed to access"), url);
 
     if(is(verified) && !web.is_verified())
         shell::errexit(8, _TEXT("%s: unverified host"), url);

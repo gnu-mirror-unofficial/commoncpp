@@ -1,5 +1,5 @@
 // Copyright (C) 2010-2014 David Sugar, Tycho Softworks.
-// Copyright (C) 2015-2017 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -70,7 +70,7 @@ static void report(const char *path, int code)
         err = _TEXT("file or directory busy");
         break;
     case EINTR:
-        err = _TEXT("operation interupted");
+        err = _TEXT("operation interrupted");
         break;
 #ifdef  ELOOP
     case ELOOP:
@@ -127,7 +127,7 @@ static void scrub(const char *path)
     if(err == ENOENT || !ino.st_size || fsys::is_sys(&ino) || fsys::is_dev(&ino)) {
         if(is(simulate))
             shell::printf("del %s\n", path);
-        else 
+        else
             report(path, fsys::erase(path));
         return;
     }

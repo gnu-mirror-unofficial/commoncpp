@@ -1,6 +1,6 @@
 .\" car - crytographic archiver
 .\" Copyright (C) 2010-2014 David Sugar <dyfet@gnutelephony.org>
-.\" Copyright (C) 2015-2017 Cherokees of Idaho.
+.\" Copyright (C) 2015-2020 Cherokees of Idaho.
 .\"
 .\" This manual page is free software; you can redistribute it and/or modify
 .\" it under the terms of the GNU General Public License as published by
@@ -32,12 +32,12 @@ car \- crytographic archiver.
 .SH DESCRIPTION
 Creates and decodes portable cross-platform crytographic archives.  An archive
 can be a collection of files, or an in-stream message that is piped.  Output
-can be to a binary .car file, or ascified text.  A symetric cipher is used,
+can be to a binary .car file, or ascified text.  A symmetric cipher is used,
 and the passhrase is hashed to form a key.
 .SH OPTIONS
 .TP
 .BI \-\-cipher= name
-Specify symetric cipher.  By default 256 bit aes is used.
+Specify symmetric cipher.  By default 256 bit aes is used.
 .TP
 .B \-\-decrypt
 Specify decryption operation on an existing car stream or file.  If no

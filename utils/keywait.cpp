@@ -1,5 +1,5 @@
 // Copyright (C) 2010-2014 David Sugar, Tycho Softworks.
-// Copyright (C) 2015-2017 Cherokees of Idaho.
+// Copyright (C) 2015-2020 Cherokees of Idaho.
 //
 // This file is part of GNU uCommon C++.
 //
@@ -62,7 +62,7 @@ static void keyflush(void)
 
     FD_ZERO(&inp);
     FD_SET(0, &inp);
-    
+
     for(;;) {
         tv.tv_usec = 20000;
         tv.tv_sec = 0;
@@ -139,7 +139,7 @@ int main(int argc, char **argv)
 
     FD_ZERO(&inp);
     FD_SET(0, &inp);
-    
+
 
     if(*timeout) {
         tv.tv_sec = *timeout;
