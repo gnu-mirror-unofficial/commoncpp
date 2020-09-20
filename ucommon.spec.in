@@ -65,8 +65,7 @@ of thread locking and synchronization.
 Summary:        Headers for building ucommon applications
 Group:          Development/Libraries/C and C++
 Requires:       %{libname} = %{version}-%{release}
-Requires:       pkgconfig(libcrypto)
-Requires:       pkgconfig(libssl)
+Requires:       pkgconfig(openssl) < 1.1
 Requires:       gcc-c++
 
 %description devel
