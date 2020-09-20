@@ -13,9 +13,6 @@
 # license that conforms to the Open Source Definition (Version 1.9)
 # published by the Open Source Initiative.
 
-# Please submit bugfixes or comments via http://bugs.opensuse.org/
-#
-
 %define libname	libucommon8
 %if %{_target_cpu} == "x86_64"
 %define	build_docs	1
@@ -25,52 +22,51 @@
 Name:           ucommon
 Version:        7.0.1
 Release:        1
-Summary:        Portable C++ runtime for threads and sockets
-License:        LGPL-3.0+
-Group:          Productivity/Other
+Summary:        Runtime library for portable C++ threading and sockets
+License:        LGPL-3.0-or-later
+Group:          Development/Library/C and C++
 Url:            http://www.gnu.org/software/commoncpp
 Source:         %{name}-%{version}.tar.gz
 BuildRequires:  cmake
 BuildRequires:  doxygen
 BuildRequires:  gcc-c++
 BuildRequires:  graphviz-gd
-BuildRequires:  pkgconfig
+BuildRequires:  pkg-config
 BuildRequires:  pkgconfig(openssl)
-Requires:       %{libname}%{_isa} = %{version}-%{release}
+Requires:       %{libname} = %{version}-%{release}
 # historically we used a -bin for ucommon applications...
 Obsoletes:      %{name}-bin < %{version}-%{release}
 Provides:       %{name}-bin = %{version}-%{release}
-BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 %description
-GNU uCommon C++ is a lightweight library to facilitate using C++ design
-patterns even for very deeply embedded applications, such as for systems using
-uClibc along with POSIX threading support. For this reason, uCommon disables
-language features that consume memory or introduce runtime overhead. uCommon
-introduces some design patterns from Objective-C, such as reference counted
-objects, memory pools, and smart pointers.  GNU uCommon introduces some new
-concepts for handling of thread locking and synchronization.
+GNU uCommon C++ is a lightweight library to facilitate using C++
+design patterns even for very deeply embedded applications, such as
+for systems using uClibc along with POSIX threading support.
+
+This subpackage contains a collection of command line tools that use
+various aspects of the ucommon library. Some may be needed to prepare
+files or for development of applications.
 
 %package -n %{libname}
-Summary:        GNU ucommon runtime library
-Group:          System/Libraries
+Summary:    GNU uCommon Runtime library for portable C++ threading and sockets
+Group:      System/Libraries
 
 %description -n %{libname}
-GNU uCommon C++ is a lightweight library to facilitate using C++ design
-patterns even for very deeply embedded applications, such as for systems using
-uClibc along with POSIX threading support. For this reason, uCommon disables
-language features that consume memory or introduce runtime overhead. uCommon
-introduces some design patterns from Objective-C, such as reference counted
-objects, memory pools, and smart pointers.  GNU uCommon introduces some new
-concepts for handling of thread locking and synchronization.
+GNU uCommon C++ is a lightweight library to facilitate using C++
+design patterns even for very deeply embedded applications, such as
+for systems using uClibc along with POSIX threading support. For this
+reason, uCommon disables language features that consume memory or
+introduce runtime overhead. uCommon introduces some design patterns
+from Objective-C, such as reference counted objects, memory pools,
+and smart pointers. uCommon introduces some new concepts for handling
+of thread locking and synchronization.
 
 %package devel
 Summary:        Headers for building ucommon applications
 Group:          Development/Libraries/C and C++
-Requires:       %{libname}%{_isa} = %{version}-%{release}
+Requires:       %{libname} = %{version}-%{release}
+Requires:       pkgconfig(openssl) < 1.1
 Requires:       gcc-c++
-Requires:       libopenssl-devel%{_isa}
-Requires:       pkgconfig
 
 %description devel
 This package provides header and support files needed for building
@@ -95,17 +91,16 @@ html browsable.
 %cmake \
     -DCMAKE_INSTALL_SYSCONFDIR:PATH=%{_sysconfdir} \
     -DCMAKE_INSTALL_LOCALSTATEDIR:PATH=%{_localstatedir}
-
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 %if	%{build_docs}
 rm -rf doc/html
-make doc %{?_smp_mflags}
+%{__make} doc %{?_smp_mflags}
 %endif
 
 %install
 %cmake_install
-chmod 0755 %{buildroot}%{_bindir}/ucommon-config
-chmod 0755 %{buildroot}%{_bindir}/commoncpp-config
+chmod a+x %{buildroot}%{_bindir}/ucommon-config
+chmod a+x %{buildroot}%{_bindir}/commoncpp-config
 
 %files -n %{libname}
 %defattr(-,root,root,-)
@@ -158,7 +153,6 @@ chmod 0755 %{buildroot}%{_bindir}/commoncpp-config
 %endif
 
 %post -n %{libname} -p /sbin/ldconfig
-
 %postun -n %{libname} -p /sbin/ldconfig
 
 %changelog
