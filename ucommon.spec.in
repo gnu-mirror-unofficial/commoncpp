@@ -32,7 +32,7 @@ BuildRequires:  doxygen
 BuildRequires:  gcc-c++
 BuildRequires:  graphviz-gd
 BuildRequires:  pkg-config
-BuildRequires:  pkgconfig(openssl)
+BuildRequires:  pkgconfig(openssl) < 1.1
 Requires:       %{libname} = %{version}-%{release}
 # historically we used a -bin for ucommon applications...
 Obsoletes:      %{name}-bin < %{version}-%{release}
