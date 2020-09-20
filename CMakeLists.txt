@@ -69,6 +69,19 @@ include(CapeMakeTargets)
 include(ucommon)
 include(config)
 
+# some platform detection support, especially for bsd's...
+
+if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
+    if(EXISTS "/usr/local/lib/")
+        include_directories("/usr/local/include")
+        link_directories("/usr/local/lib")
+    endif()
+    if(EXISTS "/usr/pkg/lib/")
+        include_directories("/usr/pkg/include")
+        link_directories("/usr/pkg/lib")
+    endif()
+endif()
+
 # we are making this optional in automake, not default...
 
 find_package(PkgConfig)
