@@ -35,8 +35,13 @@
 
 #ifndef UCOMMON_SYSRUNTIME
 #define THROW(x)    throw x
+#if __cplusplus > 199711L
+#define THROWS(x)
+#define THROWS_ANY
+#else
 #define THROWS(x)   throw(x)
 #define THROWS_ANY  throw()
+#endif
 #else
 #define THROW(x)    ::abort()
 #define THROWS(x)

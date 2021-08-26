@@ -46,7 +46,7 @@ public:
     PersistException(const std::string& reason);
     const std::string& getString() const;
 
-    virtual ~PersistException() throw();
+    virtual ~PersistException();
 
 protected:
     std::string _what;
@@ -210,7 +210,7 @@ public:
      * the given mode. The stream must be initialized properly prior
      * to this call or problems will ensue.
      */
-    PersistEngine(std::iostream& stream, EngineMode mode) throw(PersistException);
+    PersistEngine(std::iostream& stream, EngineMode mode);
 
     virtual ~PersistEngine();
 
@@ -219,75 +219,75 @@ public:
     /**
      * writes a PersistObject from a reference.
      */
-    inline void write(const PersistObject &object) throw(PersistException)
+    inline void write(const PersistObject &object)
         {write(&object);}
 
     /**
      * writes a PersistObject from a pointer.
      */
-    void write(const PersistObject *object) throw(PersistException);
+    void write(const PersistObject *object);
 
     // writes supported primitive types
   // shortcut, to make the following more readable
 #define CCXX_ENGINEWRITE_REF(valref) writeBinary((const uint8_t*)&valref,sizeof(valref))
-    inline void write(int8_t i) throw(PersistException) { CCXX_ENGINEWRITE_REF(i); }
-    inline void write(uint8_t i) throw(PersistException) { CCXX_ENGINEWRITE_REF(i); }
-    inline void write(int16_t i)  throw(PersistException) { CCXX_ENGINEWRITE_REF(i); }
-    inline void write(uint16_t i) throw(PersistException) { CCXX_ENGINEWRITE_REF(i); }
-    inline void write(int32_t i)  throw(PersistException) { CCXX_ENGINEWRITE_REF(i); }
-    inline void write(uint32_t i) throw(PersistException) { CCXX_ENGINEWRITE_REF(i); }
-    inline void write(float i)  throw(PersistException) { CCXX_ENGINEWRITE_REF(i); }
-    inline void write(double i) throw(PersistException) { CCXX_ENGINEWRITE_REF(i); }
-    inline void write(bool i) throw(PersistException) { CCXX_ENGINEWRITE_REF(i); }
+    inline void write(int8_t i) { CCXX_ENGINEWRITE_REF(i); }
+    inline void write(uint8_t i) { CCXX_ENGINEWRITE_REF(i); }
+    inline void write(int16_t i) { CCXX_ENGINEWRITE_REF(i); }
+    inline void write(uint16_t i) { CCXX_ENGINEWRITE_REF(i); }
+    inline void write(int32_t i) { CCXX_ENGINEWRITE_REF(i); }
+    inline void write(uint32_t i) { CCXX_ENGINEWRITE_REF(i); }
+    inline void write(float i) { CCXX_ENGINEWRITE_REF(i); }
+    inline void write(double i) { CCXX_ENGINEWRITE_REF(i); }
+    inline void write(bool i) { CCXX_ENGINEWRITE_REF(i); }
 #undef CCXX_ENGINEWRITE_REF
 
-    void write(const std::string& str) throw(PersistException);
+    void write(const std::string& str);
 
     // Every write operation boils down to one or more of these
-    void writeBinary(const uint8_t* data, const uint32_t size) throw(PersistException);
+    void writeBinary(const uint8_t* data, const uint32_t size);
 
     // Read Operations
 
     /**
      * reads a PersistObject into a reference overwriting the object.
      */
-    void read(PersistObject &object) throw(PersistException);
+    void read(PersistObject &object);
 
     /**
      * reads a PersistObject into a pointer allocating memory for the object if necessary.
      */
-    void read(PersistObject *&object) throw(PersistException);
+    void read(PersistObject *&object);
 
     // reads supported primitive types
   // shortcut, to make the following more readable
 #define CCXX_ENGINEREAD_REF(valref) readBinary((uint8_t*)&valref,sizeof(valref))
-    inline void read(int8_t& i) throw(PersistException) { CCXX_ENGINEREAD_REF(i); }
-    inline void read(uint8_t& i) throw(PersistException) { CCXX_ENGINEREAD_REF(i); }
-    inline void read(int16_t& i) throw(PersistException) { CCXX_ENGINEREAD_REF(i); }
-    inline void read(uint16_t& i) throw(PersistException) { CCXX_ENGINEREAD_REF(i); }
-    inline void read(int32_t& i) throw(PersistException) { CCXX_ENGINEREAD_REF(i); }
-    inline void read(uint32_t& i) throw(PersistException) { CCXX_ENGINEREAD_REF(i); }
-    inline void read(float& i)  throw(PersistException) { CCXX_ENGINEREAD_REF(i); }
-    inline void read(double& i) throw(PersistException) { CCXX_ENGINEREAD_REF(i); }
-    inline void read(bool &i) throw(PersistException) { CCXX_ENGINEREAD_REF(i); }
+    inline void read(int8_t& i) { CCXX_ENGINEREAD_REF(i); }
+    inline void read(uint8_t& i) { CCXX_ENGINEREAD_REF(i); }
+    inline void read(int16_t& i) { CCXX_ENGINEREAD_REF(i); }
+    inline void read(uint16_t& i) { CCXX_ENGINEREAD_REF(i); }
+    inline void read(int32_t& i) { CCXX_ENGINEREAD_REF(i); }
+    inline void read(uint32_t& i) { CCXX_ENGINEREAD_REF(i); }
+    inline void read(float& i) { CCXX_ENGINEREAD_REF(i); }
+    inline void read(double& i) { CCXX_ENGINEREAD_REF(i); }
+    inline void read(bool &i) { CCXX_ENGINEREAD_REF(i); }
 #undef CCXX_ENGINEREAD_REF
 
-    void read(std::string& str) throw(PersistException);
+    void read(std::string& str);
 
     // Every read operation boiled down to one or more of these
-    void readBinary(uint8_t* data, uint32_t size) throw(PersistException);
+    void readBinary(uint8_t* data, uint32_t size);
 
 private:
     /**
      * reads the actual object data into a pre-instantiated object pointer
      * by calling the read function of the derived class.
      */
-    void readObject(PersistObject* object) throw(PersistException);
+    void readObject(PersistObject* object);
 
     /**
      * reads in a class name, and caches it into the ClassMap.
      */
-    const std::string readClass() throw(PersistException);
+    const std::string readClass();
 
 
     /**
@@ -319,63 +319,63 @@ private:
 
 // Standard >> and << stream operators for PersistObject
 /** @relates PersistEngine */
-inline PersistEngine& operator >>( PersistEngine& ar, PersistObject &ob) throw(PersistException) {CCXX_RE(ar,ob);}
+inline PersistEngine& operator >>( PersistEngine& ar, PersistObject &ob) {CCXX_RE(ar,ob);}
 /** @relates PersistEngine */
-inline PersistEngine& operator >>( PersistEngine& ar, PersistObject *&ob) throw(PersistException) {CCXX_RE(ar,ob);}
+inline PersistEngine& operator >>( PersistEngine& ar, PersistObject *&ob) {CCXX_RE(ar,ob);}
 /** @relates PersistEngine */
-inline PersistEngine& operator <<( PersistEngine& ar, PersistObject const &ob) throw(PersistException) {CCXX_WE(ar,ob);}
+inline PersistEngine& operator <<( PersistEngine& ar, PersistObject const &ob) {CCXX_WE(ar,ob);}
 /** @relates PersistEngine */
-inline PersistEngine& operator <<( PersistEngine& ar, PersistObject const *ob) throw(PersistException) {CCXX_WE(ar,ob);}
+inline PersistEngine& operator <<( PersistEngine& ar, PersistObject const *ob) {CCXX_WE(ar,ob);}
 
 /** @relates PersistEngine */
-inline PersistEngine& operator >>( PersistEngine& ar, int8_t& ob) throw(PersistException) {CCXX_RE(ar,ob);}
+inline PersistEngine& operator >>( PersistEngine& ar, int8_t& ob) {CCXX_RE(ar,ob);}
 /** @relates PersistEngine */
-inline PersistEngine& operator <<( PersistEngine& ar, int8_t ob)  throw(PersistException) {CCXX_WE(ar,ob);}
+inline PersistEngine& operator <<( PersistEngine& ar, int8_t ob) {CCXX_WE(ar,ob);}
 
 /** @relates PersistEngine */
-inline PersistEngine& operator >>( PersistEngine& ar, uint8_t& ob) throw(PersistException) {CCXX_RE(ar,ob);}
+inline PersistEngine& operator >>( PersistEngine& ar, uint8_t& ob) {CCXX_RE(ar,ob);}
 /** @relates PersistEngine */
-inline PersistEngine& operator <<( PersistEngine& ar, uint8_t ob)  throw(PersistException) {CCXX_WE(ar,ob);}
+inline PersistEngine& operator <<( PersistEngine& ar, uint8_t ob) {CCXX_WE(ar,ob);}
 
 /** @relates PersistEngine */
-inline PersistEngine& operator >>( PersistEngine& ar, int16_t& ob) throw(PersistException) {CCXX_RE(ar,ob);}
+inline PersistEngine& operator >>( PersistEngine& ar, int16_t& ob) {CCXX_RE(ar,ob);}
 /** @relates PersistEngine */
-inline PersistEngine& operator <<( PersistEngine& ar, int16_t ob)  throw(PersistException) {CCXX_WE(ar,ob);}
+inline PersistEngine& operator <<( PersistEngine& ar, int16_t ob) {CCXX_WE(ar,ob);}
 
 /** @relates PersistEngine */
-inline PersistEngine& operator >>( PersistEngine& ar, uint16_t& ob) throw(PersistException) {CCXX_RE(ar,ob);}
+inline PersistEngine& operator >>( PersistEngine& ar, uint16_t& ob) {CCXX_RE(ar,ob);}
 /** @relates PersistEngine */
-inline PersistEngine& operator <<( PersistEngine& ar, uint16_t ob)  throw(PersistException) {CCXX_WE(ar,ob);}
+inline PersistEngine& operator <<( PersistEngine& ar, uint16_t ob) {CCXX_WE(ar,ob);}
 
 /** @relates PersistEngine */
-inline PersistEngine& operator >>( PersistEngine& ar, int32_t& ob) throw(PersistException) {CCXX_RE(ar,ob);}
+inline PersistEngine& operator >>( PersistEngine& ar, int32_t& ob) {CCXX_RE(ar,ob);}
 /** @relates PersistEngine */
-inline PersistEngine& operator <<( PersistEngine& ar, int32_t ob)  throw(PersistException) {CCXX_WE(ar,ob);}
+inline PersistEngine& operator <<( PersistEngine& ar, int32_t ob) {CCXX_WE(ar,ob);}
 
 /** @relates PersistEngine */
-inline PersistEngine& operator >>( PersistEngine& ar, uint32_t& ob) throw(PersistException) {CCXX_RE(ar,ob);}
+inline PersistEngine& operator >>( PersistEngine& ar, uint32_t& ob) {CCXX_RE(ar,ob);}
 /** @relates PersistEngine */
-inline PersistEngine& operator <<( PersistEngine& ar, uint32_t ob)  throw(PersistException) {CCXX_WE(ar,ob);}
+inline PersistEngine& operator <<( PersistEngine& ar, uint32_t ob) {CCXX_WE(ar,ob);}
 
 /** @relates PersistEngine */
-inline PersistEngine& operator >>( PersistEngine& ar, float& ob) throw(PersistException) {CCXX_RE(ar,ob);}
+inline PersistEngine& operator >>( PersistEngine& ar, float& ob) {CCXX_RE(ar,ob);}
 /** @relates PersistEngine */
-inline PersistEngine& operator <<( PersistEngine& ar, float ob)  throw(PersistException) {CCXX_WE(ar,ob);}
+inline PersistEngine& operator <<( PersistEngine& ar, float ob) {CCXX_WE(ar,ob);}
 
 /** @relates PersistEngine */
-inline PersistEngine& operator >>( PersistEngine& ar, double& ob) throw(PersistException) {CCXX_RE(ar,ob);}
+inline PersistEngine& operator >>( PersistEngine& ar, double& ob) {CCXX_RE(ar,ob);}
 /** @relates PersistEngine */
-inline PersistEngine& operator <<( PersistEngine& ar, double ob) throw(PersistException) {CCXX_WE(ar,ob);}
+inline PersistEngine& operator <<( PersistEngine& ar, double ob) {CCXX_WE(ar,ob);}
 
 /** @relates PersistEngine */
-inline PersistEngine& operator >>( PersistEngine& ar, std::string& ob) throw(PersistException) {CCXX_RE(ar,ob);}
+inline PersistEngine& operator >>( PersistEngine& ar, std::string& ob) {CCXX_RE(ar,ob);}
 /** @relates PersistEngine */
-inline PersistEngine& operator <<( PersistEngine& ar, std::string ob) throw(PersistException) {CCXX_WE(ar,ob);}
+inline PersistEngine& operator <<( PersistEngine& ar, std::string ob) {CCXX_WE(ar,ob);}
 
 /** @relates PersistEngine */
-inline PersistEngine& operator >>( PersistEngine& ar, bool& ob) throw(PersistException) {CCXX_RE(ar,ob);}
+inline PersistEngine& operator >>( PersistEngine& ar, bool& ob) {CCXX_RE(ar,ob);}
 /** @relates PersistEngine */
-inline PersistEngine& operator <<( PersistEngine& ar, bool ob)  throw(PersistException) {CCXX_WE(ar,ob);}
+inline PersistEngine& operator <<( PersistEngine& ar, bool ob) {CCXX_WE(ar,ob);}
 
 #undef CCXX_RE
 #undef CCXX_WE
@@ -390,7 +390,7 @@ inline PersistEngine& operator <<( PersistEngine& ar, bool ob)  throw(PersistExc
  * the engine
  */
 template<class T>
-PersistEngine& operator <<( PersistEngine& ar, typename std::vector<T> const& ob) throw(PersistException)
+PersistEngine& operator <<( PersistEngine& ar, typename std::vector<T> const& ob)
 {
     ar << (uint32_t)ob.size();
     for(unsigned int i=0; i < ob.size(); ++i)
@@ -404,7 +404,7 @@ PersistEngine& operator <<( PersistEngine& ar, typename std::vector<T> const& ob
  * an engine.
  */
 template<class T>
-PersistEngine& operator >>( PersistEngine& ar, typename std::vector<T>& ob) throw(PersistException)
+PersistEngine& operator >>( PersistEngine& ar, typename std::vector<T>& ob)
 {
     ob.clear();
     uint32_t siz;
@@ -421,7 +421,7 @@ PersistEngine& operator >>( PersistEngine& ar, typename std::vector<T>& ob) thro
  * the engine
  */
 template<class T>
-PersistEngine& operator <<( PersistEngine& ar, typename std::deque<T> const& ob) throw(PersistException)
+PersistEngine& operator <<( PersistEngine& ar, typename std::deque<T> const& ob)
 {
     ar << (uint32_t)ob.size();
   for(typename std::deque<T>::const_iterator it=ob.begin(); it != ob.end(); ++it)
@@ -435,7 +435,7 @@ PersistEngine& operator <<( PersistEngine& ar, typename std::deque<T> const& ob)
  * an engine.
  */
 template<class T>
-PersistEngine& operator >>( PersistEngine& ar, typename std::deque<T>& ob) throw(PersistException)
+PersistEngine& operator >>( PersistEngine& ar, typename std::deque<T>& ob)
 {
     ob.clear();
     uint32_t siz;
@@ -456,7 +456,7 @@ PersistEngine& operator >>( PersistEngine& ar, typename std::deque<T>& ob) throw
  * to an engine.
  */
 template<class Key, class Value>
-PersistEngine& operator <<( PersistEngine& ar, typename std::map<Key,Value> const & ob) throw(PersistException)
+PersistEngine& operator <<( PersistEngine& ar, typename std::map<Key,Value> const & ob)
 {
     ar << (uint32_t)ob.size();
     for(typename std::map<Key,Value>::const_iterator it = ob.begin();it != ob.end();++it)
@@ -470,7 +470,7 @@ PersistEngine& operator <<( PersistEngine& ar, typename std::map<Key,Value> cons
  * from an engine.
  */
 template<class Key, class Value>
-PersistEngine& operator >>( PersistEngine& ar, typename std::map<Key,Value>& ob) throw(PersistException)
+PersistEngine& operator >>( PersistEngine& ar, typename std::map<Key,Value>& ob)
 {
     ob.clear();
     uint32_t siz;
@@ -488,7 +488,7 @@ PersistEngine& operator >>( PersistEngine& ar, typename std::map<Key,Value>& ob)
  * serialize a pair of some serializable content to the engine.
  */
 template<class x, class y>
-PersistEngine& operator <<( PersistEngine& ar, std::pair<x,y> &ob) throw(PersistException)
+PersistEngine& operator <<( PersistEngine& ar, std::pair<x,y> &ob)
 {
     ar << ob.first << ob.second;
     return ar;
@@ -499,7 +499,7 @@ PersistEngine& operator <<( PersistEngine& ar, std::pair<x,y> &ob) throw(Persist
  * deserialize a pair of some serializable content to the engine.
  */
 template<class x, class y>
-PersistEngine& operator >>(PersistEngine& ar, std::pair<x, y> &ob) throw(PersistException)
+PersistEngine& operator >>(PersistEngine& ar, std::pair<x, y> &ob)
 {
     ar >> ob.first >> ob.second;
     return ar;

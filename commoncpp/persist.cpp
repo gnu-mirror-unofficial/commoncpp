@@ -39,7 +39,7 @@ const std::string& PersistException::getString() const
     return _what;
 }
 
-PersistException::~PersistException() throw()
+PersistException::~PersistException()
 {
 }
 
@@ -114,7 +114,7 @@ TypeManager::registration::~registration()
     TypeManager::remove(myName.c_str());
 }
 
-PersistEngine::PersistEngine(std::iostream& stream, EngineMode mode) throw(PersistException) :
+PersistEngine::PersistEngine(std::iostream& stream, EngineMode mode) :
 myUnderlyingStream(stream), myOperationalMode(mode)
 {
 }
@@ -125,22 +125,22 @@ PersistEngine::~PersistEngine()
         myUnderlyingStream.sync();
 }
 
-void PersistEngine::writeBinary(const uint8_t* data, const uint32_t size) throw(PersistException)
+void PersistEngine::writeBinary(const uint8_t* data, const uint32_t size)
 {
   if(myOperationalMode != modeWrite)
-    throw("Cannot write to an input Engine");
+    throw(PersistException("Cannot write to an input Engine"));
   myUnderlyingStream.write((const char *)data,size);
 }
 
 
-void PersistEngine::readBinary(uint8_t* data, uint32_t size) throw(PersistException)
+void PersistEngine::readBinary(uint8_t* data, uint32_t size)
 {
   if(myOperationalMode != modeRead)
-    throw("Cannot read from an output Engine");
+    throw(PersistException("Cannot read from an output Engine"));
   myUnderlyingStream.read((char *)data,size);
 }
 
-void PersistEngine::write(const PersistObject *object) throw(PersistException)
+void PersistEngine::write(const PersistObject *object)
 {
   // Pre-step, if object is NULL, then don't serialize it - serialize a
   // marker to say that it is null.
@@ -181,12 +181,12 @@ void PersistEngine::write(const PersistObject *object) throw(PersistException)
   }
 }
 
-void PersistEngine::read(PersistObject &object) throw(PersistException)
+void PersistEngine::read(PersistObject &object)
 {
   uint32_t id = 0;
   read(id);
   if (id == NullObject)
-    throw("Object Id should not be NULL when un-persisting to a reference");
+    throw(PersistException("Object Id should not be NULL when un-persisting to a reference"));
 
   // Do we already have this object in memory?
   if (id < myArchiveVector.size()) {
@@ -202,7 +202,7 @@ void PersistEngine::read(PersistObject &object) throw(PersistException)
   readObject(&object);
 }
 
-void PersistEngine::read(PersistObject *&object) throw(PersistException)
+void PersistEngine::read(PersistObject *&object)
 {
   uint32_t id = 0;
   read(id);
@@ -237,7 +237,7 @@ void PersistEngine::read(PersistObject *&object) throw(PersistException)
     throw(PersistException(std::string("Unable to instantiate object of class ")+className));
 }
 
-void PersistEngine::readObject(PersistObject* object) throw(PersistException)
+void PersistEngine::readObject(PersistObject* object)
 {
   // Okay then - we can make this object
   myArchiveVector.push_back(object);
@@ -251,7 +251,7 @@ void PersistEngine::readObject(PersistObject* object) throw(PersistException)
     throw( PersistException("Missing End-of-Object marker"));
 }
 
-const std::string PersistEngine::readClass() throw(PersistException)
+const std::string PersistEngine::readClass()
 {
   // Okay - read the identifier for the class in...
   uint32_t classId = 0;
@@ -269,14 +269,14 @@ const std::string PersistEngine::readClass() throw(PersistException)
   return className;
 }
 
-void PersistEngine::write(const std::string& str) throw(PersistException)
+void PersistEngine::write(const std::string& str)
 {
   uint32_t len = (uint32_t)str.length();
   write(len);
   writeBinary((uint8_t*)str.c_str(),len);
 }
 
-void PersistEngine::read(std::string& str) throw(PersistException)
+void PersistEngine::read(std::string& str)
 {
   uint32_t len = 0;
   read(len);
