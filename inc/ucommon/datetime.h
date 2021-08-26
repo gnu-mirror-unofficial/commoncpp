@@ -1005,7 +1005,7 @@ private:
     unsigned pos;
 
 protected:
-    const char *_print(void) const;
+    const char *_print(void) const __OVERRIDE;
 
     int _input(int code) __OVERRIDE;
 

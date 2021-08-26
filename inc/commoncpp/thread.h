@@ -445,7 +445,7 @@ public:
 
     void detach(void);
     void start(void);
-    void exit(void);
+    void exit(void) __OVERRIDE;
 
     inline void join(void) {
         JoinableThread::join();

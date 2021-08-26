@@ -17,7 +17,7 @@
 # meant for generating project files for those working with IDE's to do
 # otherwise generic builds of the library and supporting applications.
 
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.12)
 PROJECT(ucommon)
 set (VERSION 7.0.1)
 set (CMAKE_MACOSX_RPATH 1)

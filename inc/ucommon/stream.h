@@ -91,7 +91,7 @@ public:
      * Flush the stream input and output buffers, writes pending output.
      * @return 0 on success, or error code.
      */
-    int sync(void);
+    int sync(void) __OVERRIDE;
 
     inline bool is_open(void) const
         {return bufsize > 0;}

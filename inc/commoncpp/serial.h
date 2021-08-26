@@ -514,7 +514,7 @@ public:
      *
      * @return 0 on success.
      */
-    int sync(void);
+    int sync(void) __OVERRIDE;
 
     /**
      * Get the status of pending operations.  This can be used to

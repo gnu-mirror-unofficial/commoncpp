@@ -565,12 +565,12 @@ public:
      * Convert read lock into exclusive (write/modify) access.  Schedule
      * when other readers sharing.
      */
-    virtual void exclusive(void);
+    virtual void exclusive(void) __OVERRIDE;
 
     /**
      * Return an exclusive access lock back to share mode.
      */
-    virtual void share(void);
+    virtual void share(void) __OVERRIDE;
 };
 
 /**

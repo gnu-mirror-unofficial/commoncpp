@@ -511,7 +511,7 @@ public:
      *
      * @return 0 on success.
      */
-    int sync(void);
+    int sync(void) __OVERRIDE;
 
     /**
      * Print content into a socket.
