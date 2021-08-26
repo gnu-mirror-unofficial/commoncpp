@@ -72,6 +72,7 @@ directive
 *.cbp
 *.tmp
 .dirstamp
+*.ninja*
 test/ucommon[A-Z]*
 utils/args
 utils/car
