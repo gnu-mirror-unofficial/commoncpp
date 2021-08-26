@@ -47,7 +47,7 @@ size_t Random::fill(uint8_t *buf, size_t size)
 {
     secure::init();
 
-    if(RAND_pseudo_bytes(buf, (int)size))
+    if(RAND_bytes(buf, (int)size))
         return size;
     return 0;
 }

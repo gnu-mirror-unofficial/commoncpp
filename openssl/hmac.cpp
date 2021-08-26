@@ -36,7 +36,7 @@ void HMAC::set(const char *digest, const secure::keybytes& key)
     hmactype = EVP_get_digestbyname(digest);
     if(hmactype && len) {
         context = HMAC_CTX_new();
-        HMAC_Init((HMAC_CTX *)context, *key, (int)len, (const EVP_MD *)hmactype);
+        HMAC_Init_ex((HMAC_CTX *)context, *key, (int)len, (const EVP_MD *)hmactype, NULL);
     }
 }
 
