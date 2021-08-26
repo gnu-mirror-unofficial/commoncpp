@@ -18,6 +18,10 @@
 
 #include "local.h"
 
+#ifndef _MSWINDOWS_
+#include <fcntl.h>
+#endif
+
 namespace ucommon {
 
 void Random::seed(void)
@@ -45,11 +49,28 @@ size_t Random::key(uint8_t *buf, size_t size)
 
 size_t Random::fill(uint8_t *buf, size_t size)
 {
-    secure::init();
+#ifdef  _MSWINDOWS_
+    return key(buf, size);
+#else
+    int fd = open("/dev/urandom", O_RDONLY);
+    ssize_t result = 0;
 
-    if(RAND_bytes(buf, (int)size))
-        return size;
-    return 0;
+    if(fd > -1) {
+        result = read(fd, buf, size);
+        close(fd);
+    }
+    // ugly...would not trust it
+    else {
+        result = 0;
+        while(result++ < (ssize_t)size)
+            *(buf++) = rand() & 0xff;
+    }
+
+    if(result < 0)
+        result = 0;
+
+    return (size_t)result;
+#endif
 }
 
 bool Random::status(void)
