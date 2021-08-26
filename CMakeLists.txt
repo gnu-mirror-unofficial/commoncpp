@@ -17,14 +17,10 @@
 # meant for generating project files for those working with IDE's to do
 # otherwise generic builds of the library and supporting applications.
 
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 3.10)
 PROJECT(ucommon)
 set (VERSION 7.0.1)
 set (CMAKE_MACOSX_RPATH 1)
-
-if (POLICY CMP0075)
-    cmake_policy(SET CMP0075 OLD)
-endif()
 
 # when we override default install prefix, assume full path is used...
 
