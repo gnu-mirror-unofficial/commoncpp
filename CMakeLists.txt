@@ -218,7 +218,15 @@ endif()
 
 install(TARGETS ucommon usecure DESTINATION ${CMAKE_INSTALL_LIBDIR})
 
-# cmake std targets not used; dist made on automake...
+# Common tarball distribution
+if(EXISTS ".git/")
+    add_custom_target(dist
+        WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+        COMMAND "${CMAKE_COMMAND}" -E remove -F "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}-*.tar.gz"
+        COMMAND git archive -o "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}-${VERSION}.tar.gz" --format tar.gz --prefix="${PROJECT_NAME}-${VERSION}/" "v${VERSION}" 2>/dev/null || git archive -o "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}-${VERSION}.tar.gz" --format tar.gz --prefix="${PROJECT_NAME}-${VERSION}/" HEAD
+    )
+endif()
+
 add_cape_make_targets(ucommon ${VERSION})
 #add_make_lint_target()
 add_cape_docs_target(Doxyfile)
